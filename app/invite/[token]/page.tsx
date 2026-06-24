@@ -34,6 +34,8 @@ import connectDB from "@/lib/mongodb";
 import Guest from "@/models/Guest";
 import Wedding from "@/models/Wedding";
 import { notFound } from "next/navigation";
+import RSVPButtons
+from "@/components/RSVPButtons";
 
 type Props = {
   params: Promise<{
@@ -75,6 +77,18 @@ export default async function InvitePage({ params }: Props) {
         <p className="mt-2 text-gray-300">
           {wedding.venue}
         </p>
+
+        <p className="mt-2 text-gray-300">
+
+          {wedding.venue}
+
+      </p>
+
+        <RSVPButtons
+  token={guest.token}
+  alreadyResponded={guest.attending !== null && guest.respondedAt !== null}
+  currentStatus={guest.attending}
+/>
       </div>
     </div>
   );
