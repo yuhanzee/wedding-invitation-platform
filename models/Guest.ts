@@ -16,6 +16,16 @@ const GuestSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+
+  attending: {
+    type: Boolean,
+    default: null
+},
+
+respondedAt: {
+    type: Date,
+    default: null
+},
 });
 
 const Guest =
