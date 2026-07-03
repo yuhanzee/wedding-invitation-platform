@@ -1,40 +1,43 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Guest from "@/models/Guest";
+import Activity from "@/models/Activity";
 
-export async function POST(req: Request) {
-  await connectDB();
+export async function POST(request: NextRequest) {
+  try {
+    await connectDB();
 
-  const { token, attending } = await req.json();
+    const { token, attending } = await request.json();
 
-  const guest = await Guest.findOne({ token });
-
-  if (!guest) {
-    return NextResponse.json(
-      { success: false, message: "Guest not found" },
-      { status: 404 }
-    );
-  }
-
-  if (guest.attending !== null && guest.respondedAt !== null) {
-    return NextResponse.json(
+    const guest = await Guest.findOneAndUpdate(
+      { token },
       {
-        success: false,
-        message: "You have already responded",
-        attending: guest.attending,
+        attending,
+        respondedAt: new Date(),
       },
-      { status: 400 }
+      { new: true }
     );
+
+    if (!guest) {
+      return NextResponse.json(
+        { error: "Guest not found" },
+        { status: 404 }
+      );
+    }
+
+    // Log the RSVP activity
+    await Activity.create({
+      guestId: guest._id,
+      guestName: guest.guestName,
+      action: attending ? "Accepted" : "Declined",
+      weddingId: guest.weddingId,
+      respondedAt: new Date(),
+    });
+
+    return NextResponse.json({
+      success: true,
+    });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
-
-  guest.attending = attending;
-  guest.respondedAt = new Date();
-
-  await guest.save();
-
-  return NextResponse.json({
-    success: true,
-    message: "RSVP saved successfully",
-    attending,
-  });
 }
