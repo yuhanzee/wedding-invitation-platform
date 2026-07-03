@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
 const WeddingSchema = new mongoose.Schema({
+
+ weddingId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Wedding",
+    },
+
   brideName: {
     type: String,
     required: true,
@@ -20,6 +26,12 @@ const WeddingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  clientId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Client",
+},
+
 });
 
 const Wedding =
