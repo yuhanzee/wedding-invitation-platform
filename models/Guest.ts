@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const GuestSchema = new mongoose.Schema({
+
+  weddingId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Wedding",
+},
   guestName: {
     type: String,
     required: true,
@@ -26,6 +31,7 @@ respondedAt: {
     type: Date,
     default: null
 },
+
 });
 
 const Guest =
