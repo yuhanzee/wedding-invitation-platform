@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import PhoneFrame from "@/components/common/PhoneFrame";
+import { motion } from "motion/react";
 
+import PhoneFrame from "@/components/common/PhoneFrame";
 import Background from "./Background";
 import Header from "./Header";
 import EnvelopeSection from "./EnvelopeSection";
+import Footer from "./Footer";
 
 type WelcomeScreenProps = {
   groomName: string;
@@ -20,44 +22,51 @@ export default function WelcomeScreen({
 }: WelcomeScreenProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
   return (
     <PhoneFrame>
-      <div className="relative w-full h-full overflow-hidden select-none">
-        {/* Embossed paper textured background */}
+      <main className="relative w-full h-full overflow-hidden">
         <Background />
 
-        {/* Interactive content layer */}
-        <div className="relative z-10 w-full h-full">
-          
-          {/* Header text container - fades and translates up out of view */}
-          <div
-            className="absolute top-[80px] left-0 w-full transition-all duration-[900ms] ease-in-out pointer-events-none"
-            style={{
-              opacity: isOpen ? 0 : 1,
-              transform: isOpen ? "translateY(-50px) scale(0.96)" : "translateY(0) scale(1)",
-            }}
-          >
-            <Header
-              groomName={groomName}
-              brideName={brideName}
-            />
-          </div>
+        {/* HEADER */}
+        <motion.div
+          className="absolute top-[65px] left-0 w-full z-20"
+          animate={{
+            opacity: isOpen ? 0 : 1,
+            y: isOpen ? -20 : 0,
+          }}
+          transition={{
+            duration: 0.5,
+          }}
+        >
+          <Header
+            groomName={groomName}
+            brideName={brideName}
+          />
+        </motion.div>
 
-          {/* Envelope and Pop-up cards container */}
-          <div className="absolute top-[260px] left-1/2 -translate-x-1/2">
-            <EnvelopeSection
-              isOpen={isOpen}
-              onOpen={handleOpen}
-              weddingDate={weddingDate}
-            />
-          </div>
-
+        {/* ENVELOPE - ALWAYS SAME COMPONENT */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <EnvelopeSection
+            isOpen={isOpen}
+            onOpen={() => setIsOpen(true)}
+            weddingDate={weddingDate}
+          />
         </div>
-      </div>
+
+        {/* FOOTER */}
+        <motion.div
+          className="absolute bottom-[55px] left-0 w-full z-20"
+          animate={{
+            opacity: isOpen ? 0 : 1,
+            y: isOpen ? 20 : 0,
+          }}
+          transition={{
+            duration: 0.5,
+          }}
+        >
+          <Footer />
+        </motion.div>
+      </main>
     </PhoneFrame>
   );
-}
+}
