@@ -21,7 +21,20 @@ async function connectDB() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI);
+    cached.promise = mongoose
+  .connect(MONGODB_URI, {
+    serverSelectionTimeoutMS: 10000, // Timeout after 10s
+    family: 4, // Force IPv4
+  })
+  .then((db) => {
+    console.log("✅ Connected to MongoDB");
+    return db;
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB Connect Error");
+    console.error(err);
+    throw err;
+  });
   }
 
   cached.conn = await cached.promise;
