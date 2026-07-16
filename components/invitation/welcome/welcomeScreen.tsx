@@ -9,18 +9,35 @@ import Header from "./Header";
 import EnvelopeSection from "./EnvelopeSection";
 import Footer from "./Footer";
 
+import { useInvitationMusic } from "../music/InvitationMusicProvider";
+
 type WelcomeScreenProps = {
   groomName: string;
   brideName: string;
   weddingDate?: string;
+  onComplete: () => void;
 };
 
 export default function WelcomeScreen({
   groomName,
   brideName,
   weddingDate,
+  onComplete,
 }: WelcomeScreenProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { play } = useInvitationMusic();
+
+  const handleOpen = () => {
+  if (isOpen) return;
+
+  play();
+  setIsOpen(true);
+
+  setTimeout(() => {
+    onComplete();
+  }, 5000);
+};
 
   return (
     <PhoneFrame>
@@ -44,11 +61,11 @@ export default function WelcomeScreen({
           />
         </motion.div>
 
-        {/* ENVELOPE - ALWAYS SAME COMPONENT */}
+        {/* ENVELOPE */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           <EnvelopeSection
             isOpen={isOpen}
-            onOpen={() => setIsOpen(true)}
+            onOpen={handleOpen}
             weddingDate={weddingDate}
           />
         </div>
