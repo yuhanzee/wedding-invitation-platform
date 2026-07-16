@@ -13,7 +13,7 @@ type MusicContextType = {
   isPlaying: boolean;
   currentTime: number;
   duration: number;
-  play: () => void;
+  play: () => Promise<void>;
   pause: () => void;
   toggle: () => void;
   seek: (time: number) => void;
@@ -51,10 +51,41 @@ export default function InvitationMusicProvider({
       setDuration(audio.duration);
     };
 
-    audio.addEventListener("timeupdate", handleTimeUpdate);
+    const handlePlay = () => {
+      setIsPlaying(true);
+    };
+
+    const handlePause = () => {
+      setIsPlaying(false);
+    };
+
+    const handleEnded = () => {
+      setIsPlaying(false);
+    };
+
+    audio.addEventListener(
+      "timeupdate",
+      handleTimeUpdate
+    );
+
     audio.addEventListener(
       "loadedmetadata",
       handleLoadedMetadata
+    );
+
+    audio.addEventListener(
+      "play",
+      handlePlay
+    );
+
+    audio.addEventListener(
+      "pause",
+      handlePause
+    );
+
+    audio.addEventListener(
+      "ended",
+      handleEnded
     );
 
     return () => {
@@ -69,17 +100,39 @@ export default function InvitationMusicProvider({
         "loadedmetadata",
         handleLoadedMetadata
       );
+
+      audio.removeEventListener(
+        "play",
+        handlePlay
+      );
+
+      audio.removeEventListener(
+        "pause",
+        handlePause
+      );
+
+      audio.removeEventListener(
+        "ended",
+        handleEnded
+      );
     };
   }, []);
 
-  const play = () => {
-    audioRef.current?.play();
-    setIsPlaying(true);
+  const play = async () => {
+    if (!audioRef.current) return;
+
+    try {
+      await audioRef.current.play();
+    } catch (error) {
+      console.error(
+        "Unable to play audio:",
+        error
+      );
+    }
   };
 
   const pause = () => {
     audioRef.current?.pause();
-    setIsPlaying(false);
   };
 
   const toggle = () => {
