@@ -1,9 +1,29 @@
-import { Great_Vibes } from "next/font/google";
+// import { Great_Vibes } from "next/font/google";
 
-const greatVibes = Great_Vibes({
-  weight: "400",
-  subsets: ["latin"],
-});
+// const greatVibes = Great_Vibes({
+//   weight: "400",
+//   subsets: ["latin"],
+// });
+
+// type CoupleNamesProps = {
+//   groomName: string;
+//   brideName: string;
+// };
+
+// export default function CoupleNames({
+//   groomName,
+//   brideName,
+// }: CoupleNamesProps) {
+//   return (
+//     <h1
+//       className={`${greatVibes.className} text-[#1f1f1f] text-[42px] text-center leading-tight`}
+//     >
+//       {groomName} & {brideName}
+//     </h1>
+//   );
+// }
+
+import { greatVibes } from "@/lib/fonts";
 
 type CoupleNamesProps = {
   groomName: string;
@@ -18,7 +38,7 @@ export default function CoupleNames({
     <h1
       className={`${greatVibes.className} text-[#1f1f1f] text-[42px] text-center leading-tight`}
     >
-      {groomName} & {brideName}
+      {groomName} &amp; {brideName}
     </h1>
   );
 }
