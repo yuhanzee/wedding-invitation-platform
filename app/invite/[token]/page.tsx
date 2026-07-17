@@ -27,13 +27,22 @@ export default async function InvitePage({
     notFound();
   }
 
-  const invitationData = {
-    groomName: String(wedding.groomName),
-    brideName: String(wedding.brideName),
-    weddingDate: wedding.weddingDate
-      ? String(wedding.weddingDate)
-      : undefined,
-  };
+ const invitationData = {
+  groomName: String(wedding.groomName),
+  brideName: String(wedding.brideName),
+
+  weddingDate: wedding.weddingDate
+    ? String(wedding.weddingDate)
+    : undefined,
+
+  weddingTime: wedding.weddingTime
+    ? String(wedding.weddingTime)
+    : undefined,
+
+  venue: wedding.venue
+    ? String(wedding.venue)
+    : undefined,
+};
 
   return (
     <InvitationEngine

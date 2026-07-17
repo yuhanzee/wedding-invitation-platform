@@ -27,6 +27,11 @@ const WeddingSchema = new mongoose.Schema({
     required: true,
   },
 
+  weddingTime: {
+  type: String,
+  required: false,
+},
+
   clientId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
