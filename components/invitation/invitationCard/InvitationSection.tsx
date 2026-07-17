@@ -217,7 +217,7 @@ export default function InvitationSection({
 
         {/* Top flower arrangement above the card */}
         <motion.div
-          className="absolute right-[-15px] top-[-30px] z-30 pointer-events-none"
+          className="absolute right-[-15px] top-[-20px] z-30 pointer-events-none"
           animate={{
             y: [0, 2, 0],
             rotate: [0, 0.4, 0],
