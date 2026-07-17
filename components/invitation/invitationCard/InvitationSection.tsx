@@ -208,7 +208,7 @@ export default function InvitationSection({
           <Image
             src="/assets/invitation/left-flowers.svg"
             alt=""
-            width={140}
+            width={180}
             height={650}
             priority
             className="select-none"
@@ -217,7 +217,7 @@ export default function InvitationSection({
 
         {/* Top flower arrangement above the card */}
         <motion.div
-          className="absolute right-[-15px] top-[-39px] z-30 pointer-events-none"
+          className="absolute right-[-15px] top-[-30px] z-30 pointer-events-none"
           animate={{
             y: [0, 2, 0],
             rotate: [0, 0.4, 0],
