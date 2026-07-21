@@ -53,7 +53,7 @@ export default function CountdownSection({
 
           {/* Middle Section: Map */}
           <div className="w-full flex flex-col items-center my-auto">
-            <a
+            {/* <a
               href={venue ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue)}` : "#"}
               target="_blank"
               rel="noopener noreferrer"
@@ -66,14 +66,15 @@ export default function CountdownSection({
                 priority
                 className="object-cover select-none pointer-events-none mix-blend-multiply"
               />
-            </a>
+            </a> */}
           </div>
 
-          {/* Bottom Section: Venue & Button */}
-          <div className="w-full flex flex-col items-center pb-6">
-            <h3 className={`${cormorantGaramond.className} uppercase text-[14px] tracking-[0.25em] text-[#625853] mb-4 font-medium select-none`}>
+          <h3 className={`${cormorantGaramond.className} uppercase text-[14px] tracking-[0.25em] text-[#625853] mb-4 font-medium select-none`}>
               THE WEDDING VENUE
             </h3>
+          {/* Bottom Section: Venue & Button */}
+          <div className="w-full flex flex-col items-center pb-50">
+            
             <a
               href={venue ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue)}` : "#"}
               target="_blank"
