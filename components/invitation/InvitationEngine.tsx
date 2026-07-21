@@ -102,7 +102,8 @@ import WelcomeScreen from "./welcome/welcomeScreen";
 import MusicScreen from "./music/MusicScreen";
 import InvitationMusicProvider from "./music/InvitationMusicProvider";
 import InvitationSection from "./invitationCard/InvitationSection";
-// import GlobalButterflyMagic from "./animations/GlobalButterflyMagic";
+import CountdownVenueSection from "./countdown/CountdownSection";
+
 
 type InvitationEngineProps = {
   guest?: unknown;
@@ -173,14 +174,16 @@ export default function InvitationEngine({
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <div className="w-full">
-                <section className="min-h-screen">
-                  <MusicScreen
-                    groomName={wedding.groomName}
-                    brideName={wedding.brideName}
-                  />
-                </section>
+             <div className="w-full">
 
+              <section className="min-h-screen">
+                <MusicScreen
+                  groomName={wedding.groomName}
+                  brideName={wedding.brideName}
+                />
+              </section>
+
+              <section className="min-h-screen">
                 <InvitationSection
                   groomName={wedding.groomName}
                   brideName={wedding.brideName}
@@ -188,6 +191,15 @@ export default function InvitationEngine({
                   weddingTime={wedding.weddingTime}
                   venue={wedding.venue}
                 />
+              </section>
+
+              <section className="min-h-screen">
+                <CountdownVenueSection
+                  weddingDate={wedding.weddingDate || ""}
+                  venue={wedding.venue || ""}
+                  mapUrl=""
+                />
+              </section>
 
                 {/* Add Story, Gallery, Venue and RSVP sections here later.
                     GlobalButterflyMagic continues over all of them. */}
@@ -198,4 +210,4 @@ export default function InvitationEngine({
       </div>
     </InvitationMusicProvider>
   );
-}
+}   
