@@ -25,7 +25,7 @@ export default function MiniCageCountdown({
   className="
     absolute
     left-1/2
-    top-[34%]
+    top-[11%]
     -translate-x-1/2
     z-30
     whitespace-nowrap
@@ -43,7 +43,7 @@ export default function MiniCageCountdown({
       
 
       {/* Cages */}
-      <div className="relative z-10 flex mt-22 items-start justify-center">
+      <div className="relative z-10 flex mt-[-59] items-start justify-center">
         {/* Left Cage */}
         <MiniCage
           digit={display[0]}
@@ -77,21 +77,25 @@ export default function MiniCageCountdown({
       </div>
 
       {/* Bottom Text */}
-      <p
-        className="
-          relative
-          z-20
-          mt-8
-          whitespace-nowrap
-          font-serif
-          text-[13px]
-          uppercase
-          tracking-[0.35em]
-          text-[#5C432F]
-        "
-      >
-        DAYS TO FOREVER
-      </p>
+      <div
+  className="
+    absolute
+    right-[-px]
+    top-[92%]
+    text-right
+    font-serif
+    uppercase
+    text-[12px]
+    leading-[1.5]
+    tracking-[0.25em]
+    text-[#5C432F]
+    z-20
+  "
+>
+  <div>DAYS TO</div>
+ <div> FOREVER</div>
+ 
+</div>
     </section>
   );
 }
