@@ -102,7 +102,7 @@ import WelcomeScreen from "./welcome/welcomeScreen";
 import MusicScreen from "./music/MusicScreen";
 import InvitationMusicProvider from "./music/InvitationMusicProvider";
 import InvitationSection from "./invitationCard/InvitationSection";
-import CountdownVenueSection from "./countdown/CountdownSection";
+import CountdownSection from "./countdown/CountdownSection";
 
 
 type InvitationEngineProps = {
@@ -194,10 +194,9 @@ export default function InvitationEngine({
               </section>
 
               <section className="min-h-screen">
-                <CountdownVenueSection
+                <CountdownSection
                   weddingDate={wedding.weddingDate || ""}
-                  venue={wedding.venue || ""}
-                  mapUrl=""
+
                 />
               </section>
 
