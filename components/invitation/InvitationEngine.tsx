@@ -196,7 +196,7 @@ export default function InvitationEngine({
               <section className="min-h-screen">
                 <CountdownSection
                   weddingDate={wedding.weddingDate || ""}
-
+                  venue={wedding.venue}
                 />
               </section>
 
