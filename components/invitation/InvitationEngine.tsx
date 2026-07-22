@@ -103,6 +103,7 @@ import MusicScreen from "./music/MusicScreen";
 import InvitationMusicProvider from "./music/InvitationMusicProvider";
 import InvitationSection from "./invitationCard/InvitationSection";
 import CountdownSection from "./countdown/CountdownSection";
+import GallerySection from "./gallery/GallerySection";
 
 
 type InvitationEngineProps = {
@@ -200,7 +201,14 @@ export default function InvitationEngine({
                 />
               </section>
 
-                {/* Add Story, Gallery, Venue and RSVP sections here later.
+              <section className="min-h-screen">
+                <GallerySection
+                  groomName={wedding.groomName}
+                  brideName={wedding.brideName}
+                />
+              </section>
+
+                {/* Add Story, Venue and RSVP sections here later.
                     GlobalButterflyMagic continues over all of them. */}
               </div>
             </motion.div>
