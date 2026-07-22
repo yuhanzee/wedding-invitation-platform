@@ -79,8 +79,25 @@ export default function CountdownSection({
               href={venue ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue)}` : "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2.5 bg-[#0A1141] text-[#FAF8F6] text-[11px] font-medium tracking-[0.15em] uppercase rounded-full hover:bg-opacity-90 transition-all duration-300 shadow-md"
-            >
+              className="
+    inline-flex
+    items-center
+    justify-center
+    border
+    border-[#001F5B]
+    bg-transparent
+    px-5
+    py-2
+    font-serif
+    text-[11px]
+    uppercase
+    tracking-[0.18em]
+    text-[#001F5B]
+    transition-colors
+    duration-300
+    hover:bg-[#001F5B]
+    hover:text-white
+  ">
               View on Maps
             </a>
           </div>
