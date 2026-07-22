@@ -46,7 +46,11 @@ export default async function InvitePage({
 
   return (
     <InvitationEngine
-      wedding={invitationData}
-    />
+  wedding={invitationData}
+  guest={{
+    guestName: guest.guestName,
+    familyCount: guest.familyCount,
+  }}
+/>
   );
 }
