@@ -285,6 +285,7 @@ export default function InvitationSection({
     className="
       absolute
       bottom-[-80px]
+      z-20
       left-[71%]
       h-[180px]
       w-[45px]
