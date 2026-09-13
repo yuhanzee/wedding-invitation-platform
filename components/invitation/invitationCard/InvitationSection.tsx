@@ -108,16 +108,18 @@ type InvitationSectionProps = {
   brideName: string;
   weddingDate?: string;
   weddingTime?: string;
+  poruwaCeremonyTime?: string;
   venue?: string;
 };
-
 export default function InvitationSection({
   groomName,
   brideName,
   weddingDate,
   weddingTime,
+  poruwaCeremonyTime,
   venue,
 }: InvitationSectionProps) {
+
   return (
     <PhoneFrame>
       <section className="relative h-full w-full overflow-visible">
@@ -128,12 +130,13 @@ export default function InvitationSection({
         {/* INVITATION CARD */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           <InvitationCard
-            groomName={groomName}
-            brideName={brideName}
-            weddingDate={weddingDate}
-            weddingTime={weddingTime}
-            venue={venue}
-          />
+  groomName={groomName}
+  brideName={brideName}
+  weddingDate={weddingDate}
+  weddingTime={weddingTime}
+  poruwaCeremonyTime={poruwaCeremonyTime}
+  venue={venue}
+/>
         </div>
 
         {/* LEFT FLOWERS */}
@@ -196,57 +199,6 @@ export default function InvitationSection({
 
         {/* BUTTERFLIES */}
         <FlyingButterflies />
-
-        {/* =========================================
-            CHAINS INTO COUNTDOWN SECTION
-        ========================================== */}
-{/* 
-        <div
-          className="
-            pointer-events-none
-            absolute
-            bottom-0
-            left-0
-            z-40
-            w-full
-          "
-        >
-          {/* LEFT CHAIN */}
-          {/* <Image
-            src="/assets/countdown/chain.png"
-            alt=""
-            width={45}
-            height={220}
-            className="
-              absolute
-              bottom-[-120px]
-              left-[27%]
-              h-[220px]
-              w-auto
-              object-contain
-            "
-          /> */}
-
-          {/* RIGHT CHAIN */}
-          {/* <Image
-            src="/assets/countdown/chain.png"
-            alt=""
-            width={45}
-            height={220}
-            className="
-              absolute
-              bottom-[-120px]
-              right-[27%]
-              h-[220px]
-              w-auto
-              object-contain
-            "
-          /> */}
-        {/* </div> */} 
-
-        {/* =========================================
-    CHAINS INTO COUNTDOWN SECTION
-========================================== */}
 
 <div
   className="

@@ -1,3 +1,4 @@
+
 // import Header from "./Header";
 // import InvitationTitle from "./InvitationTitle";
 // import DateBlock from "./DateBlock";
@@ -12,15 +13,21 @@
 // };
 
 // export default function InvitationContent({
+//   groomName,
+//   brideName,
 //   weddingDate,
 //   weddingTime,
 //   venue,
 // }: InvitationContentProps) {
 //   return (
-//     <div className="absolute inset-0 flex flex-col items-center pt-7">
+//     <div className="absolute inset-2">
+
 //       <Header />
 
-//       <InvitationTitle />
+//       <InvitationTitle
+//         groomName={groomName}
+//         brideName={brideName}
+//       />
 
 //       <DateBlock
 //         weddingDate={weddingDate}
@@ -28,6 +35,7 @@
 //       />
 
 //       <VenueBlock venue={venue} />
+
 //     </div>
 //   );
 // }
@@ -42,6 +50,7 @@ type InvitationContentProps = {
   brideName: string;
   weddingDate?: string;
   weddingTime?: string;
+  poruwaCeremonyTime?: string;
   venue?: string;
 };
 
@@ -50,11 +59,11 @@ export default function InvitationContent({
   brideName,
   weddingDate,
   weddingTime,
+  poruwaCeremonyTime,
   venue,
 }: InvitationContentProps) {
   return (
     <div className="absolute inset-2">
-
       <Header />
 
       <InvitationTitle
@@ -65,10 +74,10 @@ export default function InvitationContent({
       <DateBlock
         weddingDate={weddingDate}
         weddingTime={weddingTime}
+        poruwaCeremonyTime={poruwaCeremonyTime}
       />
 
       <VenueBlock venue={venue} />
-
     </div>
   );
 }

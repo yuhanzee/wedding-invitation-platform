@@ -56,6 +56,7 @@ type InvitationCardProps = {
   brideName: string;
   weddingDate?: string;
   weddingTime?: string;
+  poruwaCeremonyTime?: string;
   venue?: string;
 };
 
@@ -64,6 +65,7 @@ export default function InvitationCard({
   brideName,
   weddingDate,
   weddingTime,
+  poruwaCeremonyTime,
   venue,
 }: InvitationCardProps) {
   return (
@@ -97,12 +99,13 @@ export default function InvitationCard({
       />
 
       <InvitationContent
-        groomName={groomName}
-        brideName={brideName}
-        weddingDate={weddingDate}
-        weddingTime={weddingTime}
-        venue={venue}
-      />
+  groomName={groomName}
+  brideName={brideName}
+  weddingDate={weddingDate}
+  weddingTime={weddingTime}
+  poruwaCeremonyTime={poruwaCeremonyTime}
+  venue={venue}
+/>
 
       <InvitationTag
         groomName={groomName}

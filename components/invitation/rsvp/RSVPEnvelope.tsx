@@ -1,6 +1,9 @@
+
+
 // "use client";
 
-// import { motion } from "motion/react";
+// import { useState } from "react";
+// import { AnimatePresence, motion } from "motion/react";
 // import RSVPCard from "./RSVPCard";
 
 // type RSVPEnvelopeProps = {
@@ -12,6 +15,8 @@
 //   guestName,
 //   familyCount,
 // }: RSVPEnvelopeProps) {
+//   const [isSubmitted, setIsSubmitted] = useState(false);
+
 //   return (
 //     <div
 //       className="
@@ -56,8 +61,6 @@
 //       >
 //         {/* =================================================
 //             ENVELOPE BACK
-
-//             This sits BEHIND the RSVP card.
 //         ================================================== */}
 
 //         <div
@@ -74,7 +77,7 @@
 //             shadow-[0_22px_45px_rgba(25,30,40,0.20)]
 //           "
 //         >
-//           {/* subtle texture */}
+//           {/* Texture */}
 //           <div
 //             className="
 //               pointer-events-none
@@ -93,7 +96,7 @@
 //             }}
 //           />
 
-//           {/* subtle lighting */}
+//           {/* Lighting */}
 //           <div
 //             className="
 //               pointer-events-none
@@ -109,8 +112,6 @@
 
 //         {/* =================================================
 //             BACK OPEN FLAP
-
-//             Small triangle visible behind the card.
 //         ================================================== */}
 
 //         <div
@@ -126,21 +127,12 @@
 //             bg-[#123A70]
 //           "
 //           style={{
-//             clipPath:
-//               "polygon(0 100%, 50% 0, 100% 100%)",
+//             clipPath: "polygon(0 100%, 50% 0, 100% 100%)",
 //           }}
 //         />
 
 //         {/* =================================================
 //             RSVP CARD
-
-//             THIS is the important animation.
-
-//             Initial:
-//             Card is pushed DOWN into envelope.
-
-//             whileInView:
-//             Card rises UP out of envelope.
 //         ================================================== */}
 
 //         <motion.div
@@ -164,12 +156,10 @@
 //               delay: 0.2,
 //               ease: [0.16, 1, 0.3, 1],
 //             },
-
 //             opacity: {
 //               duration: 0.5,
 //               delay: 0.15,
 //             },
-
 //             scale: {
 //               duration: 1.4,
 //               delay: 0.2,
@@ -187,15 +177,12 @@
 //           <RSVPCard
 //             guestName={guestName}
 //             familyCount={familyCount}
+//             onSubmitted={() => setIsSubmitted(true)}
 //           />
 //         </motion.div>
 
 //         {/* =================================================
 //             LEFT FRONT ENVELOPE PANEL
-
-//             IMPORTANT:
-//             z-40 means it stays IN FRONT of the card.
-//             This creates the illusion that card is inside.
 //         ================================================== */}
 
 //         <div
@@ -260,8 +247,6 @@
 
 //         {/* =================================================
 //             FRONT BOTTOM PANEL
-
-//             This covers the bottom of the RSVP card.
 //         ================================================== */}
 
 //         <div
@@ -277,8 +262,9 @@
 //             bg-[#0A3064]
 //           "
 //           style={{
-//   clipPath: "polygon(0 100%, 0 75%, 50% 5%, 100% 75%, 100% 100%)",
-// }}
+//             clipPath:
+//               "polygon(0 100%, 0 75%, 50% 5%, 100% 75%, 100% 100%)",
+//           }}
 //         >
 //           <div
 //             className="
@@ -291,7 +277,7 @@
 //           />
 //         </div>
 
-//                 {/* =================================================
+//         {/* =================================================
 //             ENVELOPE OUTLINE
 //         ================================================== */}
 
@@ -312,47 +298,82 @@
 
 //         {/* =================================================
 //             CONFIRM RSVP BUTTON
+
+//             IMPORTANT:
+//             disappears after successful submission
 //         ================================================== */}
 
-//         <motion.button
-//           type="submit"
-//           form="rsvp-form"
-//           whileHover={{ scale: 1.03 }}
-//           whileTap={{ scale: 0.97 }}
-//           className="
-//             absolute
-//             bottom-[70px]
-//             left-1/2
-//             z-[70]
-//             -translate-x-1/2
+//         <AnimatePresence>
+//           {!isSubmitted && (
+//             <motion.button
+//               key="confirm-rsvp"
+//               type="submit"
+//               form="rsvp-form"
 
-//             flex
-//             h-[42px]
-//             w-[180px]
-//             items-center
-//             justify-center
+//               initial={{
+//                 opacity: 0,
+//                 y: 8,
+//               }}
 
-//             rounded-[6px]
-//             border
-//             border-white
-//             bg-transparent
+//               animate={{
+//                 opacity: 1,
+//                 y: 0,
+//               }}
 
-//             font-serif
-//             text-[9px]
-//             uppercase
-//             tracking-[0.22em]
-//             text-white
+//               exit={{
+//                 opacity: 0,
+//                 scale: 0.9,
+//                 y: 5,
+//               }}
 
-//             shadow-[0_4px_12px_rgba(0,0,0,0.10)]
+//               transition={{
+//                 duration: 0.3,
+//               }}
 
-//             transition-colors
-//             duration-300
+//               whileHover={{
+//                 scale: 1.03,
+//               }}
 
-//             hover:bg-white/10
-//           "
-//         >
-//           Confirm RSVP
-//         </motion.button>
+//               whileTap={{
+//                 scale: 0.97,
+//               }}
+
+//               className="
+//                 absolute
+//                 bottom-[70px]
+//                 left-1/2
+//                 z-[70]
+//                 -translate-x-1/2
+
+//                 flex
+//                 h-[42px]
+//                 w-[180px]
+//                 items-center
+//                 justify-center
+
+//                 rounded-[6px]
+//                 border
+//                 border-white
+//                 bg-transparent
+
+//                 font-serif
+//                 text-[9px]
+//                 uppercase
+//                 tracking-[0.22em]
+//                 text-white
+
+//                 shadow-[0_4px_12px_rgba(0,0,0,0.10)]
+
+//                 transition-colors
+//                 duration-300
+
+//                 hover:bg-white/10
+//               "
+//             >
+//               Confirm RSVP
+//             </motion.button>
+//           )}
+//         </AnimatePresence>
 //       </motion.div>
 //     </div>
 //   );
@@ -367,13 +388,33 @@ import RSVPCard from "./RSVPCard";
 type RSVPEnvelopeProps = {
   guestName?: string;
   familyCount?: number;
+
+  // Used when submitting RSVP
+  token: string;
+
+  // Existing RSVP data from MongoDB
+  hasResponded?: boolean;
+  attending?: boolean | null;
+  message?: string;
 };
 
 export default function RSVPEnvelope({
   guestName,
   familyCount,
+  token,
+  hasResponded = false,
+  attending = null,
+  message = "",
 }: RSVPEnvelopeProps) {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  /* =========================================
+     IMPORTANT
+
+     If MongoDB says this guest already
+     responded, start in submitted state.
+  ========================================== */
+
+  const [isSubmitted, setIsSubmitted] =
+    useState(hasResponded);
 
   return (
     <div
@@ -386,9 +427,9 @@ export default function RSVPEnvelope({
         overflow-hidden
       "
     >
-      {/* =====================================================
+      {/* =========================================
           COMPLETE ENVELOPE AREA
-      ====================================================== */}
+      ========================================== */}
 
       <motion.div
         initial={{
@@ -417,9 +458,9 @@ export default function RSVPEnvelope({
           -translate-x-1/2
         "
       >
-        {/* =================================================
+        {/* =========================================
             ENVELOPE BACK
-        ================================================== */}
+        ========================================== */}
 
         <div
           className="
@@ -468,9 +509,9 @@ export default function RSVPEnvelope({
           />
         </div>
 
-        {/* =================================================
+        {/* =========================================
             BACK OPEN FLAP
-        ================================================== */}
+        ========================================== */}
 
         <div
           className="
@@ -485,13 +526,14 @@ export default function RSVPEnvelope({
             bg-[#123A70]
           "
           style={{
-            clipPath: "polygon(0 100%, 50% 0, 100% 100%)",
+            clipPath:
+              "polygon(0 100%, 50% 0, 100% 100%)",
           }}
         />
 
-        {/* =================================================
+        {/* =========================================
             RSVP CARD
-        ================================================== */}
+        ========================================== */}
 
         <motion.div
           initial={{
@@ -535,13 +577,19 @@ export default function RSVPEnvelope({
           <RSVPCard
             guestName={guestName}
             familyCount={familyCount}
-            onSubmitted={() => setIsSubmitted(true)}
+            token={token}
+            hasResponded={hasResponded}
+            attending={attending}
+            existingMessage={message}
+            onSubmitted={() =>
+              setIsSubmitted(true)
+            }
           />
         </motion.div>
 
-        {/* =================================================
+        {/* =========================================
             LEFT FRONT ENVELOPE PANEL
-        ================================================== */}
+        ========================================== */}
 
         <div
           className="
@@ -571,9 +619,9 @@ export default function RSVPEnvelope({
           />
         </div>
 
-        {/* =================================================
+        {/* =========================================
             RIGHT FRONT ENVELOPE PANEL
-        ================================================== */}
+        ========================================== */}
 
         <div
           className="
@@ -603,9 +651,9 @@ export default function RSVPEnvelope({
           />
         </div>
 
-        {/* =================================================
+        {/* =========================================
             FRONT BOTTOM PANEL
-        ================================================== */}
+        ========================================== */}
 
         <div
           className="
@@ -635,9 +683,9 @@ export default function RSVPEnvelope({
           />
         </div>
 
-        {/* =================================================
+        {/* =========================================
             ENVELOPE OUTLINE
-        ================================================== */}
+        ========================================== */}
 
         <div
           className="
@@ -654,12 +702,12 @@ export default function RSVPEnvelope({
           "
         />
 
-        {/* =================================================
+        {/* =========================================
             CONFIRM RSVP BUTTON
 
-            IMPORTANT:
-            disappears after successful submission
-        ================================================== */}
+            Hidden if MongoDB says the guest
+            already responded.
+        ========================================== */}
 
         <AnimatePresence>
           {!isSubmitted && (
@@ -667,64 +715,51 @@ export default function RSVPEnvelope({
               key="confirm-rsvp"
               type="submit"
               form="rsvp-form"
-
               initial={{
                 opacity: 0,
                 y: 8,
               }}
-
               animate={{
                 opacity: 1,
                 y: 0,
               }}
-
               exit={{
                 opacity: 0,
                 scale: 0.9,
                 y: 5,
               }}
-
               transition={{
                 duration: 0.3,
               }}
-
               whileHover={{
                 scale: 1.03,
               }}
-
               whileTap={{
                 scale: 0.97,
               }}
-
               className="
                 absolute
                 bottom-[70px]
                 left-1/2
                 z-[70]
-                -translate-x-1/2
-
                 flex
                 h-[42px]
                 w-[180px]
+                -translate-x-1/2
                 items-center
                 justify-center
-
                 rounded-[6px]
                 border
                 border-white
                 bg-transparent
-
                 font-serif
                 text-[9px]
                 uppercase
                 tracking-[0.22em]
                 text-white
-
                 shadow-[0_4px_12px_rgba(0,0,0,0.10)]
-
                 transition-colors
                 duration-300
-
                 hover:bg-white/10
               "
             >

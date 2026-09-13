@@ -61,7 +61,7 @@ export default function InvitationTag({
 }: InvitationTagProps) {
   return (
     <motion.div
-      className="absolute right-[30px] bottom-[-105px] w-[160px] h-[223px] z-30"
+      className="absolute right-[30px] bottom-[-105px] w-[160px] h-[223px] z-20"
       initial={{
         opacity: 0,
         scale: 0.85,

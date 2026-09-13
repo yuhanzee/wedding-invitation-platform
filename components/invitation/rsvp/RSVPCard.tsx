@@ -227,12 +227,20 @@ import { cormorantGaramond } from "@/lib/fonts";
 type RSVPCardProps = {
   guestName?: string;
   familyCount?: number;
+  token: string;
+  hasResponded?: boolean;
+  attending?: boolean | null;
+  existingMessage?: string;
   onSubmitted?: () => void;
 };
 
 export default function RSVPCard({
   guestName,
   familyCount,
+  token,
+  hasResponded = false,
+  attending = null,
+  existingMessage = "",
   onSubmitted,
 }: RSVPCardProps) {
   return (
@@ -422,13 +430,15 @@ export default function RSVPCard({
               WORKING RSVP FORM
           ======================================= */}
 
-          <div className="min-h-0 flex-1">
-            <RSVPForm
-              guestName={guestName}
-              familyCount={familyCount}
-              onSubmitted={onSubmitted}
-            />
-          </div>
+          <RSVPForm
+            guestName={guestName}
+            familyCount={familyCount}
+            token={token}
+            hasResponded={hasResponded}
+            existingAttendance={attending}
+            existingMessage={existingMessage}
+            onSubmitted={onSubmitted}
+          />
         </div>
       </div>
     </motion.div>
