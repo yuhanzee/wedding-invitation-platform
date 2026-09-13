@@ -1,9 +1,167 @@
 
+// "use client";
+
+// import PhoneFrame from "@/components/common/PhoneFrame";
+// import RSVPEnvelope from "./RSVPEnvelope";
+// import { cormorantGaramond } from "@/lib/fonts";
+
+// type RSVPSectionProps = {
+//   guestName?: string;
+//   familyCount?: number;
+// };
+
+// export default function RSVPSection({
+//   guestName = "Guest",
+//   familyCount = 1,
+// }: RSVPSectionProps) {
+//   return (
+//     <PhoneFrame>
+//       <section
+//         className="
+//           relative
+//           min-h-[900px]
+//           w-full
+//           overflow-hidden
+//           bg-[#F8F3EA]
+//         "
+//       >
+//         {/* =========================================
+//             SUBTLE PAPER TEXTURE
+//         ========================================== */}
+
+//         <div
+//           className="
+//             pointer-events-none
+//             absolute
+//             inset-0
+//             opacity-[0.12]
+//           "
+//           style={{
+//             backgroundImage: `
+//               radial-gradient(
+//                 rgba(100,78,55,.22) .4px,
+//                 transparent .4px
+//               )
+//             `,
+//             backgroundSize: "5px 5px",
+//           }}
+//         />
+
+//         {/* =========================================
+//             SOFT BACKGROUND GLOW
+//         ========================================== */}
+
+//         <div
+//           className="
+//             pointer-events-none
+//             absolute
+//             left-1/2
+//             top-[140px]
+//             h-[450px]
+//             w-[400px]
+//             -translate-x-1/2
+//             rounded-full
+//             bg-[#E9DCC7]/25
+//             blur-[90px]
+//           "
+//         />
+
+//         {/* =========================================
+//             RSVP HEADER
+//         ========================================== */}
+
+//         <header
+//           className="
+//             pointer-events-none
+//             absolute
+//             left-1/2
+//             top-[34px]
+//             z-[80]
+//             w-full
+//             -translate-x-1/2
+//             text-center
+//           "
+//         >
+//           <p
+//             className={`
+//               ${cormorantGaramond.className}
+//               text-[10px]
+//               italic
+//               tracking-[0.06em]
+//               text-[#9A806A]
+//             `}
+//           >
+//             We hope you&apos;ll join us
+//           </p>
+
+//           <h2
+//             className={`
+//               ${cormorantGaramond.className}
+//               mt-2
+//               text-[35px]
+//               font-normal
+//               leading-none
+//               tracking-[0.22em]
+//               text-[#062D59]
+//             `}
+//           >
+//             RSVP
+//           </h2>
+
+//           {/* Gold divider */}
+
+//           <div
+//             className="
+//               mx-auto
+//               mt-[14px]
+//               flex
+//               w-[125px]
+//               items-center
+//               gap-[9px]
+//             "
+//           >
+//             <span className="h-px flex-1 bg-[#C6A15D]/50" />
+
+//             <span className="text-[7px] text-[#B88C47]">
+//               ◆
+//             </span>
+
+//             <span className="h-px flex-1 bg-[#C6A15D]/50" />
+//           </div>
+
+//           <p
+//             className="
+//               mt-[10px]
+//               text-[7px]
+//               uppercase
+//               tracking-[0.4em]
+//               text-[#8B7668]
+//             "
+//           >
+//             For our big day
+//           </p>
+//         </header>
+
+//         {/* =========================================
+//             RSVP CARD + ENVELOPE
+//         ========================================== */}
+
+//         <RSVPEnvelope
+//           guestName={guestName}
+//           familyCount={familyCount}
+//         />
+//       </section>
+//     </PhoneFrame>
+//   );
+// }
+
+
 "use client";
 
 import Image from "next/image";
 import PhoneFrame from "@/components/common/PhoneFrame";
 import RSVPEnvelope from "./RSVPEnvelope";
+import { cormorantGaramond } from "@/lib/fonts";
 
 type RSVPSectionProps = {
   guestName?: string;
@@ -11,56 +169,167 @@ type RSVPSectionProps = {
 };
 
 export default function RSVPSection({
-  guestName = "Dilmith Ranasinghe",
-  familyCount = 2,
+  guestName = "Guest",
+  familyCount = 1,
 }: RSVPSectionProps) {
   return (
     <PhoneFrame>
-      <section className="relative h-full min-h-screen w-full overflow-hidden bg-[#f8f3ec]">
-        {/* <Image
-          src="/assets/envelope/background.png"
+      <section
+        className="
+          relative
+          min-h-[900px]
+          w-full
+          overflow-hidden
+          bg-[#F8F3EA]
+        "
+      >
+        {/* =========================================
+            BACKGROUND IMAGE
+        ========================================== */}
+
+        <Image
+          src="/assets/rsvp/rsvp-background.jpg"
           alt=""
           fill
           priority
-          sizes="430px"
-          className="pointer-events-none select-none object-cover"
-        /> */}
+          className="
+            pointer-events-none
+            z-0
+            select-none
+            object-cover
+            object-center
+          "
+        />
 
-        {/* <div className="absolute right-0 top-16 z-30 pointer-events-none">
-  <Image
-    src="/assets/invitation/left-flowers.svg"
-    alt=""
-    width={190}
-    height={230}
-    className="h-auto w-auto"
-    priority
-  />
-</div> */}
+        {/* =========================================
+            SUBTLE PAPER TEXTURE
+        ========================================== */}
 
         <div
-  className="
-    absolute
-    top-10
-    left-1/2
-    z-30
-    -translate-x-1/2
-    text-center
-    pointer-events-none
-  "
->
-  <h2 className="font-serif text-[34px] tracking-[0.18em] text-[#062D59]">
-    RSVP
-  </h2>
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            z-10
+            opacity-[0.12]
+          "
+          style={{
+            backgroundImage: `
+              radial-gradient(
+                rgba(100,78,55,.22) .4px,
+                transparent .4px
+              )
+            `,
+            backgroundSize: "5px 5px",
+          }}
+        />
 
-  <p className="mt-1 text-[11px] uppercase tracking-[0.35em] text-[#8A7A6E]">
-    FOR OUR BIG DAY
-  </p>
-</div>
+        {/* =========================================
+            SOFT BACKGROUND GLOW
+        ========================================== */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-[140px]
+            z-10
+            h-[450px]
+            w-[400px]
+            -translate-x-1/2
+            rounded-full
+            bg-[#E9DCC7]/25
+            blur-[90px]
+          "
+        />
+
+        {/* =========================================
+            RSVP HEADER
+        ========================================== */}
+
+        <header
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-[34px]
+            z-[80]
+            w-full
+            -translate-x-1/2
+            text-center
+          "
+        >
+          <p
+            className={`
+              ${cormorantGaramond.className}
+              text-[10px]
+              italic
+              tracking-[0.06em]
+              text-[#9A806A]
+            `}
+          >
+            We hope you&apos;ll join us
+          </p>
+
+          <h2
+            className={`
+              ${cormorantGaramond.className}
+              mt-2
+              text-[35px]
+              font-normal
+              leading-none
+              tracking-[0.22em]
+              text-[#062D59]
+            `}
+          >
+            RSVP
+          </h2>
+
+          {/* Gold divider */}
+
+          <div
+            className="
+              mx-auto
+              mt-[14px]
+              flex
+              w-[125px]
+              items-center
+              gap-[9px]
+            "
+          >
+            <span className="h-px flex-1 bg-[#C6A15D]/50" />
+
+            <span className="text-[7px] text-[#B88C47]">
+              ◆
+            </span>
+
+            <span className="h-px flex-1 bg-[#C6A15D]/50" />
+          </div>
+
+          <p
+            className="
+              mt-[10px]
+              text-[7px]
+              uppercase
+              tracking-[0.4em]
+              text-[#8B7668]
+            "
+          >
+            For our big day
+          </p>
+        </header>
+
+        {/* =========================================
+            RSVP CARD + ENVELOPE
+        ========================================== */}
+
+        <div className="relative z-20">
           <RSVPEnvelope
             guestName={guestName}
             familyCount={familyCount}
           />
-        
+        </div>
       </section>
     </PhoneFrame>
   );

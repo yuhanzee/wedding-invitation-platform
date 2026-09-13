@@ -19,7 +19,7 @@ export default function MusicScreen({
       <main className="relative h-full w-full overflow-hidden">
         {/* COUPLE BACKGROUND */}
         <Image
-          src="/assets/music/couple-background.jpg"
+          src="/assets/music/couple-background.jpeg"
           alt={`${groomName} and ${brideName}`}
           fill
           priority
