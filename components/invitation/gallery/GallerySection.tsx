@@ -234,7 +234,7 @@ export default function GallerySection({
             relative
             z-30
             w-full
-            max-w-[390px]
+            max-w-[min(390px,96vw)]
             [perspective:1800px]
           "
         >
@@ -447,13 +447,23 @@ export default function GallerySection({
                       shadow-[0_6px_15px_rgba(0,0,0,0.22)]
                     "
                   >
-                    <div className="relative h-full w-full">
+                    <div className="relative h-full w-full overflow-hidden">
+                      {/* Blurred background fill — same photo, soft bokeh */}
+                      <Image
+                        src={currentPhotos[0]}
+                        alt=""
+                        fill
+                        sizes="150px"
+                        className="object-cover scale-110 blur-sm opacity-50 select-none"
+                        aria-hidden
+                      />
+                      {/* Full uncropped photo on top */}
                       <Image
                         src={currentPhotos[0]}
                         alt={`${groomName} and ${brideName} memory`}
                         fill
                         sizes="150px"
-                        className="object-cover"
+                        className="object-contain relative z-10"
                       />
                     </div>
 
@@ -503,13 +513,23 @@ export default function GallerySection({
                       shadow-[0_6px_15px_rgba(0,0,0,0.22)]
                     "
                   >
-                    <div className="relative h-full w-full">
+                    <div className="relative h-full w-full overflow-hidden">
+                      {/* Blurred background fill */}
+                      <Image
+                        src={currentPhotos[1]}
+                        alt=""
+                        fill
+                        sizes="150px"
+                        className="object-cover scale-110 blur-sm opacity-50 select-none"
+                        aria-hidden
+                      />
+                      {/* Full uncropped photo on top */}
                       <Image
                         src={currentPhotos[1]}
                         alt={`${groomName} and ${brideName} memory`}
                         fill
                         sizes="150px"
-                        className="object-cover"
+                        className="object-contain relative z-10"
                       />
                     </div>
 
@@ -559,13 +579,23 @@ export default function GallerySection({
                       shadow-[0_6px_15px_rgba(0,0,0,0.22)]
                     "
                   >
-                    <div className="relative h-full w-full">
+                    <div className="relative h-full w-full overflow-hidden">
+                      {/* Blurred background fill */}
+                      <Image
+                        src={currentPhotos[2]}
+                        alt=""
+                        fill
+                        sizes="120px"
+                        className="object-cover scale-110 blur-sm opacity-50 select-none"
+                        aria-hidden
+                      />
+                      {/* Full uncropped photo on top */}
                       <Image
                         src={currentPhotos[2]}
                         alt={`${groomName} and ${brideName} memory`}
                         fill
                         sizes="120px"
-                        className="object-cover"
+                        className="object-contain relative z-10"
                       />
                     </div>
                   </motion.div>

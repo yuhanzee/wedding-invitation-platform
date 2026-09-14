@@ -70,7 +70,11 @@ export default function InvitationCard({
 }: InvitationCardProps) {
   return (
     <motion.div
-      className="relative z-20 h-[430px] w-[380px]"
+      className="relative z-20"
+      style={{
+        width: "min(380px, 92vw)",
+        height: "min(430px, 94svh)",
+      }}
       initial={{
         opacity: 0,
         scale: 0.94,

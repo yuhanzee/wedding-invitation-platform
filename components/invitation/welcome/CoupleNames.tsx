@@ -36,7 +36,7 @@ export default function CoupleNames({
 }: CoupleNamesProps) {
   return (
     <h1
-      className={`${greatVibes.className} text-[#1f1f1f] text-[42px] text-center leading-tight`}
+      className={`${greatVibes.className} text-[#1f1f1f] text-[clamp(30px,11vw,42px)] text-center leading-tight px-4`}
     >
       {groomName} &amp; {brideName}
     </h1>

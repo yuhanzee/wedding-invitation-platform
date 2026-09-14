@@ -46,7 +46,7 @@ export default function WelcomeScreen({
 
         {/* HEADER */}
         <motion.div
-          className="absolute top-[65px] left-0 w-full z-20"
+          className="absolute top-[8svh] left-0 w-full z-20"
           animate={{
             opacity: isOpen ? 0 : 1,
             y: isOpen ? -20 : 0,
@@ -72,7 +72,7 @@ export default function WelcomeScreen({
 
         {/* FOOTER */}
         <motion.div
-          className="absolute bottom-[55px] left-0 w-full z-20"
+          className="absolute bottom-[7svh] left-0 w-full z-20"
           animate={{
             opacity: isOpen ? 0 : 1,
             y: isOpen ? 20 : 0,

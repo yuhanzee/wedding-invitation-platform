@@ -1,3 +1,5 @@
+// 
+
 type PhoneFrameProps = {
   children: React.ReactNode;
 };
@@ -6,25 +8,36 @@ export default function PhoneFrame({
   children,
 }: PhoneFrameProps) {
   return (
-    <div className="min-h-screen bg-neutral-900 flex justify-center items-center">
-
+    <div
+      className="
+        flex
+        w-full
+        justify-center
+        bg-[#F7F3EA]
+      "
+    >
       <div
         className="
           relative
           w-full
           max-w-[430px]
-          h-screen
+          min-h-svh
+          overflow-x-hidden
           bg-[#FAF8F6]
-          overflow-hidden
-          md:h-[874px]
-          md:max-h-[90vh]
-          md:rounded-[30px]
-          md:shadow-2xl
+
+          sm:max-w-[430px]
+
+          md:max-w-[520px]
+
+          lg:max-w-[600px]
+
+          xl:max-w-[680px]
+
+          2xl:max-w-[720px]
         "
       >
         {children}
       </div>
-
     </div>
   );
 }

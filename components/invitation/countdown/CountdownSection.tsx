@@ -45,12 +45,60 @@ export default function CountdownSection({
           py-12
         "
       >
-      
 
         {/* ==================================================
-            TOP FLOWERS
+            CONTINUOUS CHAINS FROM INVITATION SECTION
+            Positioned at the very top of this section at the
+            same horizontal positions as the chains at the
+            bottom of InvitationSection — creates a seamless
+            visual continuation of the hanging decoration.
         ================================================== */}
-{/* FALLING PETALS FROM PREVIOUS SECTION */}
+
+        {/* LEFT TOP CHAIN */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            top-0
+            left-[29%]
+            z-20
+            h-[180px]
+            w-[45px]
+            -translate-x-1/2
+          "
+        >
+          <Image
+            src="/assets/countdown/chain.png"
+            alt=""
+            fill
+            className="object-cover object-top"
+          />
+        </div>
+
+        {/* RIGHT TOP CHAIN */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            top-0
+            left-[71%]
+            z-20
+            h-[180px]
+            w-[45px]
+            -translate-x-1/2
+          "
+        >
+          <Image
+            src="/assets/countdown/chain.png"
+            alt=""
+            fill
+            className="object-cover object-top"
+          />
+        </div>
+
+        {/* ==================================================
+            FALLING PETALS
+        ================================================== */}
 
 <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
 
@@ -167,7 +215,7 @@ export default function CountdownSection({
               w-full
               flex-col
               items-center
-              pb-[145px]
+              pb-[15svh]
             "
           >
             {/* Venue title */}
@@ -234,7 +282,7 @@ export default function CountdownSection({
                 mt-6
                 block
                 w-full
-                max-w-[270px]
+                max-w-[min(270px,80vw)]
               "
             >
               {/* ==================================================

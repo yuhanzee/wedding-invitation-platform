@@ -77,14 +77,14 @@ export default function ClientsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-xl font-bold text-slate-100">Client Accounts</h3>
           <p className="text-sm text-slate-400">Manage client accounts and associate them with weddings.</p>
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold px-4 py-2.5 rounded-xl text-sm transition-all duration-200 shadow-md shadow-pink-500/10 flex items-center gap-2"
+          className="self-start sm:self-auto bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold px-4 py-2.5 rounded-xl text-sm transition-all duration-200 shadow-md shadow-pink-500/10 flex items-center gap-2"
         >
           <span>➕</span> Add New Client
         </button>
@@ -113,8 +113,8 @@ export default function ClientsPage() {
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
-                  <h4 className="font-bold text-slate-200 text-lg">{client.name}</h4>
-                  <span className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full ${
+                  <h4 className="font-bold text-slate-200 text-lg min-w-0 truncate pr-2">{client.name}</h4>
+                  <span className={`shrink-0 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full ${
                     client.package === "Elite" 
                       ? "bg-purple-500/10 text-purple-400 border border-purple-500/20"
                       : client.package === "Premium"
@@ -125,10 +125,10 @@ export default function ClientsPage() {
                   </span>
                 </div>
                 
-                <div className="space-y-2 text-sm text-slate-400 mb-6">
+                <div className="space-y-2 text-sm text-slate-400 mb-6 min-w-0">
                   {client.email && (
-                    <p className="flex items-center gap-2">
-                      <span>📧</span> <span className="truncate">{client.email}</span>
+                    <p className="flex items-center gap-2 min-w-0">
+                      <span className="shrink-0">📧</span> <span className="truncate">{client.email}</span>
                     </p>
                   )}
                   {client.phone && (
