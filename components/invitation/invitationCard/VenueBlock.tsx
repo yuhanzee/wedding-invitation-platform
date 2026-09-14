@@ -1,3 +1,8 @@
+
+
+// // "use client";
+
+// // import { motion } from "motion/react";
 // // import { cormorantGaramond } from "@/lib/fonts";
 
 // // type VenueBlockProps = {
@@ -7,13 +12,32 @@
 // // export default function VenueBlock({
 // //   venue,
 // // }: VenueBlockProps) {
+// //   if (!venue) return null;
+
 // //   return (
-// //     <p className={`${cormorantGaramond.className} absolute top-[315px] left-0 right-0 text-center text-[12px] sm:text-[13px] tracking-[0.14em] text-[#6C625E] font-bold uppercase px-6 leading-relaxed select-none`}>
-// //       {venue || "SHANGRI-LA, COLOMBO"}
-// //     </p>
+// //     <motion.div
+// //       className="absolute top-[311px] left-1/2 -translate-x-1/2 w-[180px] text-center z-20"
+// //       initial={{ opacity: 0, y: 15 }}
+// //       whileInView={{ opacity: 1, y: 0 }}
+// //       viewport={{ once: true }}
+// //       transition={{
+// //         delay: 1.4,
+// //         duration: 0.6,
+// //         ease: [0.22, 1, 0.36, 1],
+// //       }}
+// //     >
+// //       <p
+// //         className={`${cormorantGaramond.className} uppercase text-[11px] tracking-[0.12em] text-[#625853]`}
+// //       >
+// //         {venue}
+// //       </p>
+// //     </motion.div>
 // //   );
 // // }
 
+// "use client";
+
+// import { motion } from "motion/react";
 // import { cormorantGaramond } from "@/lib/fonts";
 
 // type VenueBlockProps = {
@@ -23,22 +47,51 @@
 // export default function VenueBlock({
 //   venue,
 // }: VenueBlockProps) {
-    
-//     console.log("Venue:", venue);
-
 //   if (!venue) return null;
 
 //   return (
-//     <div className="absolute top-[311px] left-1/2 -translate-x-1/2 w-[180px] text-center z-20">
+//     <motion.div
+//       className="
+//         absolute
+//         left-1/2
+//         top-[72%]
+//         z-20
+//         w-[50%]
+//         -translate-x-1/2
+//         text-center
+//       "
+//       initial={{
+//         opacity: 0,
+//         y: 12,
+//       }}
+//       whileInView={{
+//         opacity: 1,
+//         y: 0,
+//       }}
+//       viewport={{
+//         once: true,
+//       }}
+//       transition={{
+//         delay: 1.4,
+//         duration: 0.6,
+//         ease: [0.22, 1, 0.36, 1],
+//       }}
+//     >
 //       <p
-//         className={`${cormorantGaramond.className} uppercase text-[11px] tracking-[0.12em] text-[#625853]`}
+//         className={`
+//           ${cormorantGaramond.className}
+//           text-[clamp(8px,2.6vw,11px)]
+//           uppercase
+//           leading-[1.15]
+//           tracking-[0.12em]
+//           text-[#625853]
+//         `}
 //       >
 //         {venue}
 //       </p>
-//     </div>
+//     </motion.div>
 //   );
 // }
-
 
 "use client";
 
@@ -56,18 +109,40 @@ export default function VenueBlock({
 
   return (
     <motion.div
-      className="absolute top-[311px] left-1/2 -translate-x-1/2 w-[180px] text-center z-20"
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className="
+        absolute
+        left-1/2
+        top-[72%]
+        z-20
+
+        w-[52%]
+        -translate-x-1/2
+        text-center
+      "
+      initial={{
+        opacity: 0,
+        y: 10,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
       viewport={{ once: true }}
       transition={{
         delay: 1.4,
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
       }}
     >
       <p
-        className={`${cormorantGaramond.className} uppercase text-[11px] tracking-[0.12em] text-[#625853]`}
+        className={`
+          ${cormorantGaramond.className}
+
+          text-[clamp(8px,1.8vw,12px)]
+          uppercase
+          leading-[1.2]
+          tracking-[0.12em]
+          text-[#625853]
+        `}
       >
         {venue}
       </p>
