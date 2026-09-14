@@ -218,23 +218,7 @@ export default function CountdownSection({
               pb-[15svh]
             "
           >
-            {/* Venue title */}
 
-            <h3
-              className={`
-                ${cormorantGaramond.className}
-                mb-4
-                select-none
-                text-center
-                text-[14px]
-                font-medium
-                uppercase
-                tracking-[0.25em]
-                text-[#625853]
-              `}
-            >
-              The Wedding Venue
-            </h3>
 
             {/* ==================================================
                 VIEW ON MAPS BUTTON
