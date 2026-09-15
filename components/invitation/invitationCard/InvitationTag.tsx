@@ -17,11 +17,19 @@
 // // }: InvitationTagProps) {
 // //   return (
 // //     <motion.div
-// //       className="absolute right-[30px] bottom-[-105px] w-[160px] h-[223px] z-20"
+// //       className="
+// //         absolute
+// //         bottom-[-23%]
+// //         right-[7%]
+// //         z-30
+
+// //         w-[42%]
+// //         aspect-[160/223]
+// //       "
 // //       initial={{
 // //         opacity: 0,
 // //         scale: 0.85,
-// //         rotate: -10,
+// //         rotate: -8,
 // //       }}
 // //       whileInView={{
 // //         opacity: 1,
@@ -35,7 +43,7 @@
 // //         ease: [0.22, 1, 0.36, 1],
 // //       }}
 // //       animate={{
-// //         rotate: [0, 2, -2, 1, -1, 0],
+// //         rotate: [0, 1.2, -1.2, 0],
 // //       }}
 // //     >
 // //       <Image
@@ -43,33 +51,91 @@
 // //         alt="Save the Date"
 // //         fill
 // //         priority
-// //         className="pointer-events-none select-none object-contain"
+// //         sizes="200px"
+// //         className="
+// //           pointer-events-none
+// //           select-none
+// //           object-contain
+// //         "
 // //       />
 
-// //       <div className="absolute inset-0 flex flex-col items-center pt-[32px] px-2 text-center text-[#2A4858]">
+// //       <div
+// //         className="
+// //           pointer-events-none
+// //           absolute
+// //           inset-0
 
-// //         <div className="mt-10 flex h-[84px] w-full flex-col items-center justify-center">
+// //           flex
+// //           flex-col
+// //           items-center
 
+// //           px-[10%]
+// //           pt-[31%]
+
+// //           text-center
+// //           text-[#2A4858]
+// //         "
+// //       >
+// //         <div
+// //           className="
+// //             mt-[24%]
+// //             flex
+// //             h-[38%]
+// //             w-full
+// //             flex-col
+// //             items-center
+// //             justify-center
+// //           "
+// //         >
 // //           <span
-// //             className={`${cormorantGaramond.className} max-w-[80px] truncate text-[7px] font-bold uppercase tracking-[0.10em] leading-tight`}
+// //             className={`
+// //               ${cormorantGaramond.className}
+
+// //               max-w-[78%]
+// //               truncate
+
+// //               text-[clamp(5px,1.25vw,8px)]
+
+// //               font-bold
+// //               uppercase
+// //               leading-tight
+// //               tracking-[0.1em]
+// //             `}
 // //           >
 // //             {groomName}
 // //           </span>
 
 // //           <span
-// //             className={`${cormorantGaramond.className} my-0.5 text-[7px] italic font-semibold opacity-90`}
+// //             className={`
+// //               ${cormorantGaramond.className}
+
+// //               my-[2%]
+// //               text-[clamp(5px,1.25vw,8px)]
+// //               font-semibold
+// //               italic
+// //             `}
 // //           >
 // //             &
 // //           </span>
 
 // //           <span
-// //             className={`${cormorantGaramond.className} max-w-[80px] truncate text-[7px] font-bold uppercase tracking-[0.10em] leading-tight`}
+// //             className={`
+// //               ${cormorantGaramond.className}
+
+// //               max-w-[78%]
+// //               truncate
+
+// //               text-[clamp(5px,1.25vw,8px)]
+
+// //               font-bold
+// //               uppercase
+// //               leading-tight
+// //               tracking-[0.1em]
+// //             `}
 // //           >
 // //             {brideName}
 // //           </span>
-
 // //         </div>
-
 // //       </div>
 // //     </motion.div>
 // //   );
@@ -94,25 +160,28 @@
 //     <motion.div
 //       className="
 //         absolute
-//         bottom-[-23%]
-//         right-[7%]
+
+//         bottom-[-20%]
+//         right-[5%]
+
 //         z-30
-//         w-[42%]
+
 //         aspect-[160/223]
+
+//         w-[39%]
+//         max-w-[175px]
 //       "
 //       initial={{
 //         opacity: 0,
 //         scale: 0.85,
-//         rotate: -10,
+//         rotate: -8,
 //       }}
 //       whileInView={{
 //         opacity: 1,
 //         scale: 1,
 //         rotate: 0,
 //       }}
-//       viewport={{
-//         once: true,
-//       }}
+//       viewport={{ once: true }}
 //       transition={{
 //         delay: 1.7,
 //         duration: 0.8,
@@ -122,14 +191,12 @@
 //         rotate: [0, 1.2, -1.2, 0],
 //       }}
 //     >
-//       {/* TAG SVG */}
-
 //       <Image
 //         src="/assets/invitation/tag.svg"
 //         alt="Save the Date"
 //         fill
 //         priority
-//         sizes="(max-width: 430px) 42vw, 160px"
+//         sizes="(max-width: 430px) 40vw, 175px"
 //         className="
 //           pointer-events-none
 //           select-none
@@ -137,18 +204,19 @@
 //         "
 //       />
 
-//       {/* NAMES */}
-
 //       <div
 //         className="
 //           pointer-events-none
 //           absolute
 //           inset-0
+
 //           flex
 //           flex-col
 //           items-center
-//           px-[8%]
+
+//           px-[10%]
 //           pt-[31%]
+
 //           text-center
 //           text-[#2A4858]
 //         "
@@ -156,9 +224,11 @@
 //         <div
 //           className="
 //             mt-[24%]
+
 //             flex
 //             h-[38%]
 //             w-full
+
 //             flex-col
 //             items-center
 //             justify-center
@@ -167,13 +237,18 @@
 //           <span
 //             className={`
 //               ${cormorantGaramond.className}
-//               max-w-[75%]
+
+//               max-w-[82%]
 //               truncate
-//               text-[clamp(5px,1.8vw,7px)]
+
+//               text-[clamp(6px,1.8vw,9px)]
+
 //               font-bold
 //               uppercase
+
 //               leading-tight
-//               tracking-[0.1em]
+
+//               tracking-[0.08em]
 //             `}
 //           >
 //             {groomName}
@@ -182,26 +257,33 @@
 //           <span
 //             className={`
 //               ${cormorantGaramond.className}
-//               my-[1%]
-//               text-[clamp(5px,1.8vw,7px)]
+
+//               my-[2%]
+
+//               text-[clamp(6px,1.8vw,9px)]
+
 //               font-semibold
 //               italic
-//               opacity-90
 //             `}
 //           >
-//             &
+//             &amp;
 //           </span>
 
 //           <span
 //             className={`
 //               ${cormorantGaramond.className}
-//               max-w-[75%]
+
+//               max-w-[82%]
 //               truncate
-//               text-[clamp(5px,1.8vw,7px)]
+
+//               text-[clamp(6px,1.8vw,9px)]
+
 //               font-bold
 //               uppercase
+
 //               leading-tight
-//               tracking-[0.1em]
+
+//               tracking-[0.08em]
 //             `}
 //           >
 //             {brideName}
@@ -231,12 +313,16 @@ export default function InvitationTag({
     <motion.div
       className="
         absolute
-        bottom-[-23%]
-        right-[7%]
+
+        bottom-[-19%]
+        right-[4%]
+
         z-30
 
-        w-[42%]
         aspect-[160/223]
+
+        w-[38%]
+        max-w-[180px]
       "
       initial={{
         opacity: 0,
@@ -248,7 +334,9 @@ export default function InvitationTag({
         scale: 1,
         rotate: 0,
       }}
-      viewport={{ once: true }}
+      viewport={{
+        once: true,
+      }}
       transition={{
         delay: 1.7,
         duration: 0.8,
@@ -263,7 +351,10 @@ export default function InvitationTag({
         alt="Save the Date"
         fill
         priority
-        sizes="200px"
+        sizes="
+          (max-width: 430px) 38vw,
+          180px
+        "
         className="
           pointer-events-none
           select-none
@@ -291,9 +382,11 @@ export default function InvitationTag({
         <div
           className="
             mt-[24%]
+
             flex
             h-[38%]
             w-full
+
             flex-col
             items-center
             justify-center
@@ -303,15 +396,16 @@ export default function InvitationTag({
             className={`
               ${cormorantGaramond.className}
 
-              max-w-[78%]
+              max-w-[82%]
               truncate
 
-              text-[clamp(5px,1.25vw,8px)]
+              text-[clamp(7px,2vw,10px)]
 
               font-bold
               uppercase
+
               leading-tight
-              tracking-[0.1em]
+              tracking-[0.07em]
             `}
           >
             {groomName}
@@ -322,27 +416,30 @@ export default function InvitationTag({
               ${cormorantGaramond.className}
 
               my-[2%]
-              text-[clamp(5px,1.25vw,8px)]
+
+              text-[clamp(7px,2vw,10px)]
+
               font-semibold
               italic
             `}
           >
-            &
+            &amp;
           </span>
 
           <span
             className={`
               ${cormorantGaramond.className}
 
-              max-w-[78%]
+              max-w-[82%]
               truncate
 
-              text-[clamp(5px,1.25vw,8px)]
+              text-[clamp(7px,2vw,10px)]
 
               font-bold
               uppercase
+
               leading-tight
-              tracking-[0.1em]
+              tracking-[0.07em]
             `}
           >
             {brideName}
