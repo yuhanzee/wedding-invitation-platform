@@ -1,11 +1,66 @@
+import Image from "next/image";
+
 export default function RightPhotoCard() {
   return (
-    <div className="w-[115px] h-[145px] bg-[#FCFBF9] border border-[#EAE4DC] rounded-[2px] shadow-md flex items-center justify-center p-2 text-center select-none pointer-events-none">
-      {/* 
-        TODO: Paste your Figma Right Photo Card component code here.
-      */}
-      <div className="text-[9px] text-neutral-400 uppercase tracking-wider font-semibold">
-        Right Photo Card
+    <div
+      className="
+        relative
+        h-[145px]
+        w-[115px]
+        select-none
+        overflow-hidden
+        rounded-[2px]
+        border
+        border-[#E8DED4]
+        bg-[#FFFDF9]
+        p-[7px]
+        pb-[22px]
+        shadow-[0_8px_18px_rgba(64,48,42,0.22)]
+        pointer-events-none
+      "
+    >
+      {/* PHOTO */}
+      <div className="relative h-full w-full overflow-hidden bg-[#F5EEE8]">
+        <Image
+          src="/assets/envelope/right-photo-card.jpeg"
+          alt="Couple photo"
+          fill
+          priority
+          sizes="115px"
+          className="object-cover"
+        />
+      </div>
+
+      {/* POLAROID PAPER HIGHLIGHT */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          rounded-[2px]
+          ring-1
+          ring-inset
+          ring-white/60
+        "
+      />
+
+      {/* SMALL GOLD DETAIL */}
+      <div
+        className="
+          absolute
+          bottom-[9px]
+          left-1/2
+          flex
+          -translate-x-1/2
+          items-center
+          gap-[4px]
+        "
+      >
+        <span className="h-px w-[14px] bg-[#B4872C]/35" />
+
+        <span className="h-[3px] w-[3px] rotate-45 bg-[#B4872C]/50" />
+
+        <span className="h-px w-[14px] bg-[#B4872C]/35" />
       </div>
     </div>
   );

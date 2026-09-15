@@ -533,21 +533,21 @@ type InvitationEngineProps = {
 ========================================= */
 
 const galleryPhotos = [
-  "/assets/gallery/1.jpg",
-  "/assets/gallery/2.jpg",
-  "/assets/gallery/3.jpg",
-  "/assets/gallery/4.jpg",
-  "/assets/gallery/5.jpg",
-  "/assets/gallery/6.jpg",
-  "/assets/gallery/7.jpg",
-  "/assets/gallery/8.jpg",
-  "/assets/gallery/9.jpg",
-  "/assets/gallery/10.jpg",
-  "/assets/gallery/11.jpg",
-  "/assets/gallery/12.jpg",
-  "/assets/gallery/13.jpg",
-  "/assets/gallery/14.jpg",
-  "/assets/gallery/15.jpg",
+  "/assets/gallery/1.jpeg",
+  "/assets/gallery/2.jpeg",
+  "/assets/gallery/3.jpeg",
+  "/assets/gallery/4.jpeg",
+  "/assets/gallery/5.jpeg",
+  "/assets/gallery/6.jpeg",
+  "/assets/gallery/7.jpeg",
+  "/assets/gallery/8.jpeg",
+  "/assets/gallery/9.jpeg",
+  "/assets/gallery/10.jpeg",
+  "/assets/gallery/11.jpeg",
+  "/assets/gallery/12.jpeg",
+  "/assets/gallery/13.jpeg",
+  "/assets/gallery/14.jpeg",
+  "/assets/gallery/15.jpeg",
 ];
 
 /* =========================================

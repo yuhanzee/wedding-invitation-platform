@@ -1,15 +1,3 @@
-// export default function SaveTheDateCard() {
-//   return (
-//     <div className="w-[145px] h-[145px] bg-[#FAF6F0] border border-[#E9DFD3] rounded-full shadow-md flex items-center justify-center p-3 text-center select-none pointer-events-none">
-//       {/* 
-//         TODO: Paste your Figma Save the Date Card component code here.
-//       */}
-//       <div className="text-[9px] text-neutral-400 uppercase tracking-wider font-semibold">
-//         Save the Date Card
-//       </div>
-//     </div>
-//   );
-// }
 "use client";
 
 import { motion } from "motion/react";
@@ -31,21 +19,187 @@ type SaveTheDateCardProps = {
   weddingDate?: string;
 };
 
+/* =========================================================
+   SMALL BLUSH FLOWER
+========================================================= */
+
+function BlushFlower({
+  size = 20,
+}: {
+  size?: number;
+}) {
+  return (
+    <div
+      className="relative shrink-0"
+      style={{
+        width: size,
+        height: size,
+      }}
+    >
+      <span
+        className="
+          absolute
+          left-1/2
+          top-[5%]
+          h-[55%]
+          w-[38%]
+          -translate-x-1/2
+          rounded-[60%_60%_50%_50%]
+          bg-[#E6AEB5]
+        "
+      />
+
+      <span
+        className="
+          absolute
+          left-[8%]
+          top-[28%]
+          h-[40%]
+          w-[52%]
+          -rotate-[35deg]
+          rounded-[60%]
+          bg-[#D995A2]
+        "
+      />
+
+      <span
+        className="
+          absolute
+          right-[8%]
+          top-[28%]
+          h-[40%]
+          w-[52%]
+          rotate-[35deg]
+          rounded-[60%]
+          bg-[#EABAC0]
+        "
+      />
+
+      <span
+        className="
+          absolute
+          bottom-[3%]
+          left-[20%]
+          h-[45%]
+          w-[42%]
+          rotate-[25deg]
+          rounded-[60%]
+          bg-[#E4A6AF]
+        "
+      />
+
+      <span
+        className="
+          absolute
+          bottom-[3%]
+          right-[20%]
+          h-[45%]
+          w-[42%]
+          -rotate-[25deg]
+          rounded-[60%]
+          bg-[#F0C5C9]
+        "
+      />
+
+      <span
+        className="
+          absolute
+          left-1/2
+          top-1/2
+          h-[22%]
+          w-[22%]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          bg-[#B77D82]
+          shadow-[0_0_0_1px_rgba(180,135,44,0.28)]
+        "
+      />
+    </div>
+  );
+}
+
+/* =========================================================
+   NAVY LEAF
+========================================================= */
+
+function NavyLeaf({
+  rotate = 0,
+  size = 15,
+}: {
+  rotate?: number;
+  size?: number;
+}) {
+  return (
+    <span
+      className="
+        block
+        rounded-[100%_0_100%_0]
+        bg-gradient-to-br
+        from-[#334C72]
+        to-[#142A4C]
+      "
+      style={{
+        width: size,
+        height: size * 0.48,
+        transform: `rotate(${rotate}deg)`,
+      }}
+    />
+  );
+}
+
+/* =========================================================
+   GOLD BERRY
+========================================================= */
+
+function GoldBerry() {
+  return (
+    <span
+      className="
+        block
+        h-[4px]
+        w-[4px]
+        rounded-full
+        bg-[#B78A39]
+        shadow-[0_1px_2px_rgba(91,57,14,0.25)]
+      "
+    />
+  );
+}
+
+/* =========================================================
+   SAVE THE DATE CARD
+========================================================= */
+
 export default function SaveTheDateCard({
   groomName = "Chiran",
   brideName = "Teshani",
   weddingDate = "2026-07-07",
 }: SaveTheDateCardProps) {
-  /* =========================================
-     FORMAT DATE
-  ========================================= */
-
   let formattedDate = "JULY 07, 2026";
 
   if (weddingDate) {
-    const date = new Date(`${weddingDate}T00:00:00`);
+    const isoMatch = weddingDate.match(
+      /^(\d{4})-(\d{2})-(\d{2})$/
+    );
 
-    if (!Number.isNaN(date.getTime())) {
+    let date: Date | null = null;
+
+    if (isoMatch) {
+      date = new Date(
+        Number(isoMatch[1]),
+        Number(isoMatch[2]) - 1,
+        Number(isoMatch[3])
+      );
+    } else {
+      const parsed = new Date(weddingDate);
+
+      if (!Number.isNaN(parsed.getTime())) {
+        date = parsed;
+      }
+    }
+
+    if (date && !Number.isNaN(date.getTime())) {
       formattedDate = date
         .toLocaleDateString("en-US", {
           month: "long",
@@ -83,253 +237,343 @@ export default function SaveTheDateCard({
         ease: [0.22, 1, 0.36, 1],
       }}
     >
-      {/* =====================================
-          OUTER SHADOW
-      ====================================== */}
+      {/* =================================================
+          SHADOW
+      ================================================= */}
+
+      <div
+        className="
+          absolute
+          inset-[3px]
+          rounded-full
+          shadow-[0_13px_28px_rgba(57,45,49,0.24)]
+        "
+      />
+
+      {/* =================================================
+          MAIN BLUSH PAPER
+      ================================================= */}
 
       <div
         className="
           absolute
           inset-[4px]
           rounded-full
-          shadow-[0_12px_30px_rgba(102,69,64,0.22)]
+          border
+          border-[#D6B6B3]
+          bg-[#FBF2EF]
         "
       />
 
-      {/* =====================================
-          MAIN CARD
-      ====================================== */}
+      {/* =================================================
+          SOFT INNER PAPER
+      ================================================= */}
 
       <div
         className="
           absolute
-          inset-[5px]
+          inset-[7px]
+          rounded-full
+
+          bg-[radial-gradient(circle_at_50%_42%,#FFFDF9_0%,#FBF3EF_55%,#F1DDD9_100%)]
+        "
+      />
+
+      {/* =================================================
+          DOUBLE GOLD RING
+      ================================================= */}
+
+      <div
+        className="
+          absolute
+          inset-[8px]
           rounded-full
           border
-          border-[#D8B9AD]
-          bg-[#FAF4EE]
+          border-[#B88A39]/65
         "
       />
-
-      {/* =====================================
-          SOFT INNER BLUSH
-      ====================================== */}
 
       <div
         className="
           absolute
-          inset-[11px]
-          rounded-full
-          bg-[radial-gradient(circle,#FFFDF9_0%,#F8EEE8_68%,#EEDBD5_100%)]
-        "
-      />
-
-      {/* =====================================
-          OUTER DECORATIVE RING
-      ====================================== */}
-
-      <div
-        className="
-          absolute
-          inset-[9px]
+          inset-[12px]
           rounded-full
           border
-          border-[#B9917E]/40
+          border-[#C8A25D]/35
         "
       />
 
-      {/* =====================================
-          INNER THIN GOLD RING
-      ====================================== */}
+      {/* =================================================
+          TOP LEFT FLORAL CLUSTER
+      ================================================= */}
 
       <div
-        className="
-          absolute
-          inset-[15px]
-          rounded-full
-          border
-          border-[#B89A70]/30
-        "
-      />
-
-      {/* =====================================
-          TOP ORCHID / PETALS
-      ====================================== */}
-
-      <div className="absolute left-1/2 top-[1px] z-20 -translate-x-1/2">
-        <div className="relative h-[28px] w-[42px]">
-          {/* left petal */}
-          <span
-            className="
-              absolute
-              left-[3px]
-              top-[7px]
-              h-[15px]
-              w-[22px]
-              -rotate-[28deg]
-              rounded-[70%_35%_70%_35%]
-              bg-[#DDA8AC]
-            "
-          />
-
-          {/* right petal */}
-          <span
-            className="
-              absolute
-              right-[3px]
-              top-[7px]
-              h-[15px]
-              w-[22px]
-              rotate-[28deg]
-              rounded-[35%_70%_35%_70%]
-              bg-[#D99DA4]
-            "
-          />
-
-          {/* center petal */}
-          <span
-            className="
-              absolute
-              left-1/2
-              top-[3px]
-              h-[18px]
-              w-[14px]
-              -translate-x-1/2
-              rounded-[70%_70%_55%_55%]
-              bg-[#EBC3C4]
-            "
-          />
-
-          {/* orchid center */}
-          <span
-            className="
-              absolute
-              left-1/2
-              top-[13px]
-              h-[7px]
-              w-[7px]
-              -translate-x-1/2
-              rounded-full
-              bg-[#A66F75]
-            "
-          />
-        </div>
-      </div>
-
-      {/* =====================================
-          LEFT BOTANICAL DETAIL
-      ====================================== */}
-
-      <svg
         className="
           absolute
           left-[4px]
-          top-[30px]
-          z-10
-          h-[80px]
-          w-[34px]
-          opacity-70
+          top-[5px]
+          z-20
+          h-[58px]
+          w-[58px]
         "
-        viewBox="0 0 40 100"
-        fill="none"
       >
-        <path
-          d="M35 98 C22 78 24 57 31 40 C36 27 29 13 18 2"
-          stroke="#A77C70"
-          strokeWidth="1"
-        />
+        <div className="absolute left-[13px] top-[15px]">
+          <BlushFlower size={25} />
+        </div>
 
-        <ellipse
-          cx="25"
-          cy="67"
-          rx="5"
-          ry="11"
-          transform="rotate(-40 25 67)"
-          fill="#D6A5A2"
-          fillOpacity="0.75"
-        />
+        <div className="absolute left-[1px] top-[7px]">
+          <NavyLeaf rotate={-35} size={18} />
+        </div>
 
-        <ellipse
-          cx="31"
-          cy="43"
-          rx="5"
-          ry="10"
-          transform="rotate(38 31 43)"
-          fill="#E2B6B3"
-          fillOpacity="0.75"
-        />
+        <div className="absolute left-[2px] top-[25px]">
+          <NavyLeaf rotate={-65} size={17} />
+        </div>
 
-        <ellipse
-          cx="22"
-          cy="21"
-          rx="4"
-          ry="9"
-          transform="rotate(-35 22 21)"
-          fill="#D9AAA8"
-          fillOpacity="0.65"
-        />
-      </svg>
+        <div className="absolute left-[12px] top-[40px]">
+          <NavyLeaf rotate={-25} size={16} />
+        </div>
 
-      {/* =====================================
-          RIGHT BOTANICAL DETAIL
-      ====================================== */}
+        <div className="absolute left-[33px] top-[5px]">
+          <NavyLeaf rotate={30} size={17} />
+        </div>
 
-      <svg
+        <div className="absolute left-[42px] top-[19px]">
+          <NavyLeaf rotate={60} size={15} />
+        </div>
+
+        <div className="absolute left-[8px] top-[17px]">
+          <GoldBerry />
+        </div>
+
+        <div className="absolute left-[40px] top-[38px]">
+          <GoldBerry />
+        </div>
+      </div>
+
+      {/* =================================================
+          TOP RIGHT FLORAL CLUSTER
+      ================================================= */}
+
+      <div
         className="
           absolute
-          right-[4px]
-          top-[30px]
-          z-10
-          h-[80px]
-          w-[34px]
-          -scale-x-100
-          opacity-70
+          right-[2px]
+          top-[4px]
+          z-20
+          h-[62px]
+          w-[62px]
         "
-        viewBox="0 0 40 100"
-        fill="none"
       >
-        <path
-          d="M35 98 C22 78 24 57 31 40 C36 27 29 13 18 2"
-          stroke="#A77C70"
-          strokeWidth="1"
-        />
+        <div className="absolute right-[12px] top-[16px]">
+          <BlushFlower size={28} />
+        </div>
 
-        <ellipse
-          cx="25"
-          cy="67"
-          rx="5"
-          ry="11"
-          transform="rotate(-40 25 67)"
-          fill="#D6A5A2"
-          fillOpacity="0.75"
-        />
+        <div className="absolute right-[1px] top-[6px]">
+          <NavyLeaf rotate={35} size={19} />
+        </div>
 
-        <ellipse
-          cx="31"
-          cy="43"
-          rx="5"
-          ry="10"
-          transform="rotate(38 31 43)"
-          fill="#E2B6B3"
-          fillOpacity="0.75"
-        />
-      </svg>
+        <div className="absolute right-[1px] top-[28px]">
+          <NavyLeaf rotate={65} size={18} />
+        </div>
 
-      {/* =====================================
+        <div className="absolute right-[14px] top-[44px]">
+          <NavyLeaf rotate={25} size={17} />
+        </div>
+
+        <div className="absolute right-[37px] top-[4px]">
+          <NavyLeaf rotate={-30} size={17} />
+        </div>
+
+        <div className="absolute right-[45px] top-[22px]">
+          <NavyLeaf rotate={-65} size={15} />
+        </div>
+
+        <div className="absolute right-[7px] top-[18px]">
+          <GoldBerry />
+        </div>
+
+        <div className="absolute right-[41px] top-[42px]">
+          <GoldBerry />
+        </div>
+      </div>
+
+      {/* =================================================
+          LEFT SIDE WREATH
+      ================================================= */}
+
+      <div
+        className="
+          absolute
+          left-[3px]
+          top-[55px]
+          z-20
+          flex
+          flex-col
+          items-center
+          gap-[1px]
+        "
+      >
+        <NavyLeaf rotate={-70} size={18} />
+        <NavyLeaf rotate={-48} size={17} />
+
+        <div className="my-[1px]">
+          <BlushFlower size={16} />
+        </div>
+
+        <NavyLeaf rotate={-25} size={17} />
+      </div>
+
+      {/* =================================================
+          RIGHT SIDE WREATH
+      ================================================= */}
+
+      <div
+        className="
+          absolute
+          right-[3px]
+          top-[58px]
+          z-20
+          flex
+          flex-col
+          items-center
+          gap-[1px]
+        "
+      >
+        <NavyLeaf rotate={70} size={18} />
+        <NavyLeaf rotate={48} size={17} />
+
+        <div className="my-[1px]">
+          <BlushFlower size={15} />
+        </div>
+
+        <NavyLeaf rotate={25} size={17} />
+      </div>
+
+      {/* =================================================
+          BOTTOM LEFT CLUSTER
+      ================================================= */}
+
+      <div
+        className="
+          absolute
+          bottom-[2px]
+          left-[8px]
+          z-20
+          h-[50px]
+          w-[55px]
+        "
+      >
+        <div className="absolute bottom-[7px] left-[10px]">
+          <BlushFlower size={25} />
+        </div>
+
+        <div className="absolute bottom-[1px] left-[1px]">
+          <NavyLeaf rotate={35} size={19} />
+        </div>
+
+        <div className="absolute bottom-[24px] left-[1px]">
+          <NavyLeaf rotate={65} size={17} />
+        </div>
+
+        <div className="absolute bottom-[2px] left-[34px]">
+          <NavyLeaf rotate={-25} size={17} />
+        </div>
+
+        <div className="absolute bottom-[36px] left-[15px]">
+          <GoldBerry />
+        </div>
+      </div>
+
+      {/* =================================================
+          BOTTOM RIGHT CLUSTER
+      ================================================= */}
+
+      <div
+        className="
+          absolute
+          bottom-[3px]
+          right-[7px]
+          z-20
+          h-[50px]
+          w-[55px]
+        "
+      >
+        <div className="absolute bottom-[8px] right-[11px]">
+          <BlushFlower size={23} />
+        </div>
+
+        <div className="absolute bottom-[1px] right-[1px]">
+          <NavyLeaf rotate={-35} size={19} />
+        </div>
+
+        <div className="absolute bottom-[24px] right-[1px]">
+          <NavyLeaf rotate={-65} size={17} />
+        </div>
+
+        <div className="absolute bottom-[2px] right-[34px]">
+          <NavyLeaf rotate={25} size={17} />
+        </div>
+
+        <div className="absolute bottom-[36px] right-[15px]">
+          <GoldBerry />
+        </div>
+      </div>
+
+      {/* =================================================
+          SMALL GOLD DETAILS AROUND WREATH
+      ================================================= */}
+
+      <span className="absolute left-[23px] top-[18px] z-20 h-[3px] w-[3px] rounded-full bg-[#B88A39]" />
+
+      <span className="absolute right-[25px] top-[20px] z-20 h-[3px] w-[3px] rounded-full bg-[#B88A39]" />
+
+      <span className="absolute bottom-[23px] left-[27px] z-20 h-[3px] w-[3px] rounded-full bg-[#B88A39]" />
+
+      <span className="absolute bottom-[22px] right-[27px] z-20 h-[3px] w-[3px] rounded-full bg-[#B88A39]" />
+
+      {/* =================================================
+          CLEAN CENTER
+
+          Makes sure wreath never interferes with text.
+      ================================================= */}
+
+      <div
+        className="
+          absolute
+          left-1/2
+          top-1/2
+          z-[21]
+
+          h-[88px]
+          w-[88px]
+
+          -translate-x-1/2
+          -translate-y-1/2
+
+          rounded-full
+
+          bg-[#FBF4EF]/90
+
+          shadow-[0_0_16px_12px_rgba(251,244,239,0.72)]
+        "
+      />
+
+      {/* =================================================
           CONTENT
-      ====================================== */}
+      ================================================= */}
 
       <div
         className="
           relative
-          z-20
+          z-30
+
           flex
-          w-[96px]
+          w-[88px]
           flex-col
           items-center
           justify-center
+
           text-center
-          text-[#695149]
         "
       >
         {/* SAVE */}
@@ -337,8 +581,11 @@ export default function SaveTheDateCard({
         <span
           className={`
             ${greatVibes.className}
-            text-[23px]
-            leading-[20px]
+
+            text-[22px]
+            leading-[18px]
+
+            text-[#A8751E]
           `}
         >
           Save
@@ -353,25 +600,27 @@ export default function SaveTheDateCard({
             w-full
             items-center
             justify-center
-            gap-[5px]
+            gap-[4px]
           "
         >
-          <span className="h-px w-[15px] bg-[#B9947D]/50" />
+          <span className="h-px w-[13px] bg-[#B4872C]/55" />
 
           <span
             className={`
               ${cormorant.className}
-              text-[6px]
+
+              text-[5.5px]
               font-semibold
               uppercase
               tracking-[0.24em]
-              text-[#9A7768]
+
+              text-[#233B60]
             `}
           >
             THE
           </span>
 
-          <span className="h-px w-[15px] bg-[#B9947D]/50" />
+          <span className="h-px w-[13px] bg-[#B4872C]/55" />
         </div>
 
         {/* DATE */}
@@ -379,25 +628,58 @@ export default function SaveTheDateCard({
         <span
           className={`
             ${greatVibes.className}
-            text-[23px]
-            leading-[20px]
+
+            text-[22px]
+            leading-[18px]
+
+            text-[#A8751E]
           `}
         >
           Date
         </span>
 
+        {/* HEART */}
+
+        <div
+          className={`
+            ${greatVibes.className}
+
+            mt-[3px]
+
+            text-[10px]
+            leading-none
+
+            text-[#C78991]
+          `}
+        >
+          ♡
+        </div>
+
         {/* NAMES */}
 
-        <div className="mt-[7px] flex items-center justify-center gap-[3px]">
+        <div
+          className="
+            mt-[2px]
+            flex
+            w-full
+            items-center
+            justify-center
+            gap-[2px]
+          "
+        >
           <span
             className={`
               ${cormorant.className}
-              max-w-[38px]
+
+              max-w-[34px]
               truncate
-              text-[6px]
+
+              text-[5.5px]
               font-semibold
               uppercase
-              tracking-[0.08em]
+              tracking-[0.06em]
+
+              text-[#243B5E]
             `}
           >
             {groomName}
@@ -406,90 +688,64 @@ export default function SaveTheDateCard({
           <span
             className={`
               ${greatVibes.className}
-              text-[9px]
-              text-[#B07E7D]
+
+              text-[8px]
+
+              text-[#B77C83]
             `}
           >
-            &
+            &amp;
           </span>
 
           <span
             className={`
               ${cormorant.className}
-              max-w-[38px]
+
+              max-w-[34px]
               truncate
-              text-[6px]
+
+              text-[5.5px]
               font-semibold
               uppercase
-              tracking-[0.08em]
+              tracking-[0.06em]
+
+              text-[#243B5E]
             `}
           >
             {brideName}
           </span>
         </div>
 
-        {/* WEDDING DATE */}
+        {/* DATE */}
 
         <span
           className={`
             ${cormorant.className}
-            mt-[4px]
+
+            mt-[3px]
+
             whitespace-nowrap
-            text-[5.5px]
+
+            text-[5px]
             font-semibold
             uppercase
-            tracking-[0.12em]
-            text-[#9B7A6B]
+            tracking-[0.1em]
+
+            text-[#8A685B]
           `}
         >
           {formattedDate}
         </span>
-      </div>
 
-      {/* =====================================
-          BOTTOM MINI ORCHID
-      ====================================== */}
+        {/* BOTTOM ORNAMENT */}
 
-      <div
-        className="
-          absolute
-          bottom-[5px]
-          left-1/2
-          z-20
-          flex
-          -translate-x-1/2
-          items-center
-          gap-[2px]
-        "
-      >
-        <span
-          className="
-            h-[7px]
-            w-[11px]
-            -rotate-[25deg]
-            rounded-[100%_0_100%_0]
-            bg-[#DCA9AC]
-          "
-        />
+        <div className="mt-[3px] flex items-center gap-[3px]">
+          <span className="h-px w-[9px] bg-[#B4872C]/45" />
 
-        <span
-          className="
-            h-[5px]
-            w-[5px]
-            rounded-full
-            bg-[#A77A72]
-          "
-        />
+          <span className="h-[3px] w-[3px] rotate-45 bg-[#B4872C]/65" />
 
-        <span
-          className="
-            h-[7px]
-            w-[11px]
-            rotate-[25deg]
-            rounded-[0_100%_0_100%]
-            bg-[#E3B5B7]
-          "
-        />
+          <span className="h-px w-[9px] bg-[#B4872C]/45" />
+        </div>
       </div>
     </motion.div>
   );
