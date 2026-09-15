@@ -411,9 +411,9 @@ export default function GallerySection({
                       text-[#37261F]
                     `}
                   >
-                    Make
+                    Love
                     <br />
-                    Memories
+                    Captured
                   </p>
                 </motion.div>
 
@@ -632,9 +632,9 @@ export default function GallerySection({
                     text-[#6A5446]
                   `}
                 >
-                  take the
+                  love
                   <br />
-                  trip ♡
+                   ♡
                 </p>
               </motion.div>
             </AnimatePresence>

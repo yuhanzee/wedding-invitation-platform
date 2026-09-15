@@ -152,7 +152,7 @@ export default function MinimalCountdown({
             md:text-[38px]
           `}
         >
-          until we say “I do”
+          to our “forever”
         </h2>
       </motion.div>
 
