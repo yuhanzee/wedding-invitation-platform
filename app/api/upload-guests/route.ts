@@ -1,3 +1,77 @@
+// import { NextRequest, NextResponse } from "next/server";
+// import connectDB from "@/lib/mongodb";
+// import Guest from "@/models/Guest";
+// import Wedding from "@/models/Wedding";
+// import * as XLSX from "xlsx";
+// import { v4 as uuid } from "uuid";
+
+// export async function POST(request: NextRequest) {
+//   try {
+//     await connectDB();
+
+//     const formData = await request.formData();
+//     const file = formData.get("file") as File;
+//     const targetWeddingId = formData.get("weddingId") as string;
+
+//     if (!file) {
+//       return NextResponse.json(
+//         { error: "No file uploaded" },
+//         { status: 400 }
+//       );
+//     }
+
+//     // Determine target wedding
+//     let wedding;
+//     if (targetWeddingId) {
+//       wedding = await Wedding.findById(targetWeddingId);
+//     } else {
+//       wedding = await Wedding.findOne();
+//     }
+
+//     if (!wedding) {
+//       return NextResponse.json(
+//         { error: "Target wedding not found. Please create a wedding first." },
+//         { status: 404 }
+//       );
+//     }
+
+//     const bytes = await file.arrayBuffer();
+//     const workbook = XLSX.read(bytes);
+//     const sheetName = workbook.SheetNames[0];
+//     const sheet = workbook.Sheets[sheetName];
+//     const rows = XLSX.utils.sheet_to_json(sheet) as any[];
+
+//     let importedCount = 0;
+//     const createdGuests = [];
+
+//     for (const row of rows) {
+//       // Handle flexible header naming
+//       const name = row.GuestName || row["Guest Name"] || row.Name || row.name;
+//       const countVal = row.FamilyCount || row["Family Count"] || row.Family || row.Seats || row.seats || row.Count || row.count || 1;
+
+//       if (!name) continue; // Skip empty rows
+
+//       const guest = await Guest.create({
+//         weddingId: wedding._id,
+//         guestName: name.toString().trim(),
+//         familyCount: Number(countVal) || 1,
+//         token: uuid(),
+//       });
+
+//       createdGuests.push(guest);
+//       importedCount++;
+//     }
+
+//     return NextResponse.json({
+//       success: true,
+//       total: importedCount,
+//       weddingId: wedding._id,
+//     });
+//   } catch (error: any) {
+//     return NextResponse.json({ error: error.message }, { status: 500 });
+//   }
+// }
+
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Guest from "@/models/Guest";
@@ -10,8 +84,9 @@ export async function POST(request: NextRequest) {
     await connectDB();
 
     const formData = await request.formData();
-    const file = formData.get("file") as File;
-    const targetWeddingId = formData.get("weddingId") as string;
+
+    const file = formData.get("file") as File | null;
+    const targetWeddingId = formData.get("weddingId") as string | null;
 
     if (!file) {
       return NextResponse.json(
@@ -20,8 +95,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Determine target wedding
+    /* =====================================================
+       FIND TARGET WEDDING
+    ===================================================== */
+
     let wedding;
+
     if (targetWeddingId) {
       wedding = await Wedding.findById(targetWeddingId);
     } else {
@@ -30,44 +109,154 @@ export async function POST(request: NextRequest) {
 
     if (!wedding) {
       return NextResponse.json(
-        { error: "Target wedding not found. Please create a wedding first." },
+        {
+          error:
+            "Target wedding not found. Please create a wedding first.",
+        },
         { status: 404 }
       );
     }
 
+    /* =====================================================
+       READ EXCEL FILE
+    ===================================================== */
+
     const bytes = await file.arrayBuffer();
-    const workbook = XLSX.read(bytes);
+
+    const workbook = XLSX.read(bytes, {
+      type: "array",
+    });
+
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
-    const rows = XLSX.utils.sheet_to_json(sheet) as any[];
+
+    if (!sheet) {
+      return NextResponse.json(
+        { error: "Excel sheet could not be read." },
+        { status: 400 }
+      );
+    }
+
+    const rows = XLSX.utils.sheet_to_json<Record<string, unknown>>(
+      sheet,
+      {
+        defval: "",
+      }
+    );
 
     let importedCount = 0;
+    let skippedCount = 0;
+
     const createdGuests = [];
 
-    for (const row of rows) {
-      // Handle flexible header naming
-      const name = row.GuestName || row["Guest Name"] || row.Name || row.name;
-      const countVal = row.FamilyCount || row["Family Count"] || row.Family || row.Seats || row.seats || row.Count || row.count || 1;
+    /* =====================================================
+       PROCESS EACH EXCEL ROW
+    ===================================================== */
 
-      if (!name) continue; // Skip empty rows
+    for (const row of rows) {
+      /* -------------------------
+         GUEST NAME
+      ------------------------- */
+
+      const name =
+        row.GuestName ??
+        row["Guest Name"] ??
+        row.Name ??
+        row.name;
+
+      if (!name || !String(name).trim()) {
+        skippedCount++;
+        continue;
+      }
+
+      /* -------------------------
+         SEAT / FAMILY COUNT
+
+         Supports different Excel
+         header naming styles.
+      ------------------------- */
+
+      const countValue =
+        row.FamilyCount ??
+        row["Family Count"] ??
+        row["family count"] ??
+        row.Family ??
+        row.family ??
+        row.SeatCount ??
+        row["Seat Count"] ??
+        row["seat count"] ??
+        row.Seats ??
+        row.seats ??
+        row.Count ??
+        row.count ??
+        row["No. of Seats"] ??
+        row["No of Seats"] ??
+        row["Number of Seats"] ??
+        1;
+
+      /* -------------------------
+         CONVERT TO NUMBER
+      ------------------------- */
+
+      const parsedCount = Number(
+        String(countValue).trim()
+      );
+
+      const familyCount =
+        Number.isFinite(parsedCount) &&
+        parsedCount >= 1
+          ? Math.floor(parsedCount)
+          : 1;
+
+      /* -------------------------
+         CREATE GUEST
+      ------------------------- */
 
       const guest = await Guest.create({
         weddingId: wedding._id,
-        guestName: name.toString().trim(),
-        familyCount: Number(countVal) || 1,
+
+        guestName: String(name).trim(),
+
+        familyCount,
+
         token: uuid(),
       });
 
-      createdGuests.push(guest);
+      createdGuests.push({
+        id: guest._id,
+        guestName: guest.guestName,
+        familyCount: guest.familyCount,
+      });
+
       importedCount++;
     }
 
+    /* =====================================================
+       RESPONSE
+    ===================================================== */
+
     return NextResponse.json({
       success: true,
+
       total: importedCount,
+
+      skipped: skippedCount,
+
       weddingId: wedding._id,
+
+      guests: createdGuests,
     });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    console.error("Guest import error:", error);
+
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Failed to import guest list.";
+
+    return NextResponse.json(
+      { error: message },
+      { status: 500 }
+    );
   }
 }
